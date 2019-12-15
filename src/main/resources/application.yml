@@ -1,0 +1,34 @@
+#thymelea模板配置
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    encoding: UTF-8
+    cache: false
+  #热部署文件，页面不产生缓存，及时更新
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+  #切面启用
+  aop:
+    proxy-target-class: true
+    auto: true
+  #是否启用文件上传功能
+  servlet:
+    multipart:
+      enabled: true
+      maxFileSize: 2MB
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+    #运行环境使用开发环境 ： dev   项目完成后使用生产环境 ： prod
+  profiles:
+    active: dev
+  messages:
+    encoding: utf-8
