@@ -1,6 +1,6 @@
 package com.example.sharefood.conf;
 
-import cn.xgq.financialsys.conf.intercepors.LoginInterceptor;
+import com.example.sharefood.conf.intercepors.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -29,10 +29,11 @@ public class WebConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("login");
-        registry.addViewController("/register").setViewName("register");
-        registry.addViewController("/api/admin").setViewName("admin/monitor");
-        registry.addViewController("/api/sysadmin").setViewName("admin/sysmonitor");
-    }
+        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/food").setViewName("index-1");
+        registry.addViewController("/detailfood").setViewName("index-2");
+        registry.addViewController("/foodblog").setViewName("index-3");
+        registry.addViewController("/login").setViewName("module/login");
+   }
 
 }

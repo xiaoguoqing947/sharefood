@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>BaoBao</title>
+    <link href="/css/style_log.css" rel="stylesheet" type="text/css">
+    <link href="/css/toastr.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery.js"></script>
+    <script type="text/javascript" src="/js/toastr.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.validate.js"></script>
+    <script src="//cdn.bootcss.com/blueimp-md5/2.3.1/js/md5.min.js"></script>
+    <script type="text/javascript" src="/js/admin/login.js"></script>
+</head>
+
+<body class="login">
+<div class="login_m">
+    <div class="login_logo"><a href="/"><img src="/images/logo.png" width="196" height="46"></a></div>
+    <div class="login_boder">
+        <div class="login_padding" id="login_model">
+            <h2>用户名</h2>
+            <label>
+                <input type="text" id="username" class="txt_input txt_input2" placeholder="请输入你的用户名">
+            </label>
+            <h2>密码</h2>
+            <label>
+                <input type="password" name="textfield2" id="userpwd" class="txt_input" placeholder="请输入你的密码">
+            </label>
+            <p class="forgot"><a id="iforget" href="javascript:void(0);">忘记密码</a></p>
+            <div class="rem_sub">
+                <div class="rem_sub_l">
+                    <input type="checkbox" name="checkbox" id="save_me">
+                    <label for="save_me">记住密码</label>
+                </div>
+                <label>
+                    <input type="submit" class="sub_button" name="button" id="button" value="登录" style="opacity: 0.7;">
+                </label>
+            </div>
+        </div>
+        <!--忘记密码界面-->
+        <div id="forget_model" class="login_padding" style="display:none">
+            <br>
+            <h1>忘记密码</h1>
+            <br>
+            <label>
+                <input type="text" id="usrmail" class="txt_input txt_input2">
+            </label>
+            <div class="rem_sub">
+                <label>
+                    <input type="submit" class="sub_buttons" name="button" id="reget_pwd" value="取回密码"
+                           style="opacity: 0.7;">
+                    <input type="submit" class="sub_button" name="button" id="forget_back" value="返回"
+                           style="opacity: 0.7;">　　
+                </label>
+            </div>
+        </div>
+        <!--注册用户界面-->
+        <div id="regist_model" class="login_padding" style="display:none">
+            <label>
+                <input type="text" id="uname" placeholder="用户名" class="txt_input">
+            </label>
+            <label>
+                <input type="text" id="eamil" placeholder="邮箱" class="txt_input">
+            </label>
+            <label>
+                <input type="text" id="pwd" placeholder="密码" class="txt_input">
+            </label>
+            <label>
+                <input type="text" id="repwd" placeholder="确认密码" class="txt_input">
+            </label><label>
+        </label>
+            <div class="rem_sub">
+                <label>
+                    <input type="submit" class="sub_buttons" id="regist" value="注册"
+                           style="opacity: 0.7;">　　
+                    <input type="submit" class="sub_button" id="regist_back" value="返回"
+                           style="opacity: 0.7;">　　
+                </label>
+            </div>
+        </div>
+        <!--管理员登录-->
+        <div class="login_padding" id="admin_login_model" style="display:none">
+            <h2>用户名</h2>
+            <label>
+                <input type="text" id="admin_name" class="txt_input txt_input2" placeholder="默认密码账号：admin">
+            </label>
+            <h2>密码</h2>
+            <label>
+                <input type="password" name="textfield2" id="admin_pwd" class="txt_input" placeholder="默认密码账号：123456">
+            </label>
+            <div class="rem_sub">
+                <label>
+                    <input type="submit" class="sub_buttons"  id="login_admin_btn" value="登录" style="opacity: 0.7;">
+                    <input type="submit" class="sub_button" id="admin_back" value="返回"  style="opacity: 0.7;">　　
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<br> <br>
+<p align="center"><a id="admin_login" href="javascript:void(0);">管理员登录 </a> | <a id="iregist" href="javascript:void(0);">注册账号</a></p>
+</body>
+</html>

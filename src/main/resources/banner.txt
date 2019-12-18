@@ -1,0 +1,11 @@
+${AnsiColor.BRIGHT_BLACK}
+
+       .__                          _____                 .___
+  _____|  |__ _____ _______   _____/ ____\____   ____   __| _/
+ /  ___/  |  \\__  \\_  __ \_/ __ \   __\/  _ \ /  _ \ / __ |
+ \___ \|   Y  \/ __ \|  | \/\  ___/|  | (  <_> |  <_> ) /_/ |
+/____  >___|  (____  /__|    \___  >__|  \____/ \____/\____ |
+     \/     \/     \/            \/                        \/
+ ${AnsiColor.BRIGHT_GREEN}
+ ::: Spring-Boot ${spring-boot.version}     ::: sharefood (version:${spring-boot.formatted-version})
+

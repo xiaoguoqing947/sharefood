@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>主界面</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="/css/stuck.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/touchTouch.css">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/jquery-migrate-1.1.1.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/superfish.js"></script>
+    <script src="/js/jquery.equalheights.js"></script>
+    <script src="/js/jquery.mobilemenu.js"></script>
+    <script src="/js/jquery.easing.1.3.js"></script>
+    <script src="/js/tmStickUp.js"></script>
+    <script src="/js/jquery.ui.totop.js"></script>
+    <script src="/js/touchTouch.jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $().UItoTop({easingType: 'easeOutQuart'});
+            $('#stuck_container').tmStickUp({});
+            $('.gallery .gall_item').touchTouch();
+        });
+    </script>
+</head>
+<body class="page1" id="top">
+<div th:replace="/module/header :: header"></div>
+<section class="content">
+    <div class="container">
+        <div class="row">
+            <div class="grid_4">
+                <div class="banner">
+                    <div class="gall_block">
+                        <img src="/images/page1_img1.jpg" alt="">
+                        <div class="bann_capt ">
+                            <div class="maxheight">
+                                <img src="/images/icon1.png" alt="">
+                                <div class="bann_title">传统 美食推荐</div>
+                                <a href="#">更多</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_4">
+                <div class="banner">
+                    <div class="gall_block">
+                        <div class="bann_capt  bn__1">
+                            <div class="maxheight">
+                                <img src="/images/icon2.png" alt="">
+                                <div class="bann_title">儿童 &amp; 素食主义者 美食推荐</div>
+                                <a href="#">更多</a>
+                            </div>
+                        </div>
+                        <img src="/images/page1_img2.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="grid_4">
+                <div class="banner ">
+                    <div class="gall_block">
+                        <img src="/images/page1_img3.jpg" alt="">
+                        <div class="bann_capt  bn__2">
+                            <div class="maxheight">
+                                <img src="/images/icon3.png" alt="">
+                                <div class="bann_title">相关优惠活动<br> &amp; 美食推荐</div>
+                                <a href="#">更多</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_4">
+                <div class="block1">
+                    <div class="count">1</div>
+                    传统美食描述信息
+                    <br>
+                    <a href="#" class="btn">更多</a>
+                </div>
+            </div>
+            <div class="grid_4">
+                <div class="block1">
+                    <div class="count">2</div>
+                    儿童美食描述信息
+                    <br>
+                    <a href="#" class="btn">更多</a>
+                </div>
+            </div>
+            <div class="grid_4">
+                <div class="block1">
+                    <div class="count">3</div>
+                    优惠活动美食描述信息
+                    <br>
+                    <a href="#" class="btn">更多</a>
+                </div>
+            </div>
+            <div class="grid_12">
+                <div class="box">
+                    <div class="row">
+                        <div class="grid_5 preffix_1">
+                            <h2>来看看一些名人对美食的说法</h2>
+                            <p>任何一种爱,都不比对美食的热爱真切--<strong class="color1">萧伯纳George Bernard Shaw</strong></p>
+                            <p>这世界如果有更多的人热爱美食与诗歌胜过爱黄金,这世界会是一个更美好的地方--<strong class="color1">托尔金 J.R.R.Tolkien</strong></p>
+                            <p>只要告诉我你爱吃什么，我就能知道你是什么样的人--<strong class="color1">萨瓦林 Jean Anthelme Brillat-Savarin</strong></p>
+                        </div>
+                        <div class="grid_5">
+                            <h2>什么样的食物叫美食呢？</h2>
+                            美食，顾名思义就是美味的食物，贵的有山珍海味，便宜的有街边小吃。其实美食是不分贵贱的，只要是自
+                            己喜欢的，都可以称之为美食。中国素有“烹饪王国”这个美誉。在中国这个大家庭里，有五十六个小家庭，每
+                            个家庭都有自己的特色美食。美食吃前有期待、吃后有回味，享受美食也要看场合，场合好美食吃起来才有味
+                            道。世界各地美食文化博大精深，营养物质各不相同，品味更多美食，享受更多健康，也让人吃的更加开心。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12">
+                <h2>今日美食推荐</h2>
+            </div>
+            <div class="gallery">
+                <div class="grid_4"><a href="/images/big1.jpg" class="gall_item"><img
+                        src="/images/page1_img4.jpg" alt=""></a><a href="#" class="link1">+</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="grid_4"><a href="/images/big2.jpg" class="gall_item"><img
+                        src="/images/page1_img5.jpg" alt=""></a><a href="#" class="link1">+</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="grid_4"><a href="/images/big3.jpg" class="gall_item"><img
+                        src="/images/page1_img6.jpg" alt=""></a><a href="#" class="link1">+</a>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="grid_4">
+                <h2>优惠时间</h2>
+                <ul class="shed">
+                    <li><span>早上:</span> 8AM - 11AM</li>
+                    <li><span>中午:</span> 12AM - 12PM</li>
+                    <li><span>晚上:</span> 8AM - 11AM</li>
+                </ul>
+            </div>
+            <div class="grid_4">
+                <h2>优惠时间</h2>
+                <ul class="shed">
+                    <li><span>早上:</span> 8AM - 11AM</li>
+                    <li><span>中午:</span> 12AM - 12PM</li>
+                    <li><span>晚上:</span> 8AM - 11AM</li>
+                </ul>
+            </div>
+            <div class="grid_4">
+                <h2>优惠时间</h2>
+                <ul class="shed">
+                    <li><span>早上:</span> 8AM - 11AM</li>
+                    <li><span>中午:</span> 12AM - 12PM</li>
+                    <li><span>晚上:</span> 8AM - 11AM</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<div th:replace="/module/footer :: footer"></div>
+</body>
+</html>
+
