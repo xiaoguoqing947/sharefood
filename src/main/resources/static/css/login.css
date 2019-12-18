@@ -1,0 +1,22 @@
+.login-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 120px;
+    border: 5px solid #fff;
+    box-shadow: 0 0 10px #000;
+    background: url(../img/avatar.jpg) no-repeat center center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    transition: width 2s, height 2s;
+    -moz-transition: width 2s, height 2s, -moz-transform 2s;
+    -webkit-transition: width 2s, height 2s, -webkit-transform 2s;
+    -o-transition: width 2s, height 2s, -o-transform 2s
+}
+
+.login-avatar:hover {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg)
+}

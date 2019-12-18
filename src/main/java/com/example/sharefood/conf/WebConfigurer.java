@@ -29,11 +29,12 @@ public class WebConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
         registry.addViewController("/food").setViewName("index-1");
         registry.addViewController("/detailfood").setViewName("index-2");
         registry.addViewController("/foodblog").setViewName("index-3");
         registry.addViewController("/login").setViewName("module/login");
+        registry.addViewController("/admin").setViewName("monitor/admin");
+        registry.addViewController("/sysadmin").setViewName("monitor/sysadmin");
    }
 
 }
