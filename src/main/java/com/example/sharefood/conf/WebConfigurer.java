@@ -1,5 +1,6 @@
 package com.example.sharefood.conf;
 
+import com.example.sharefood.conf.intercepors.IndexInterceptor;
 import com.example.sharefood.conf.intercepors.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -12,11 +13,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class WebConfigurer implements WebMvcConfigurer {
     @Autowired
     private LoginInterceptor loginInterceptor;
-
+    @Autowired
+    private IndexInterceptor indexInterceptor;
     // 这个方法用来注册拦截器，我们自己写好的拦截器需要通过这里添加注册才能生效
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/api/**").excludePathPatterns("/api/logout");
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/api/**");
+        registry.addInterceptor(indexInterceptor).addPathPatterns("/");
         //关闭了拦截器，项目完成后开启
     }
 
@@ -24,7 +27,8 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        registry.addResourceHandler("/img/uploadfile/**").addResourceLocations("file:E:/JAVACODE/financialsys/src/main/resources/static/img/uploadfile/");
+        registry.addResourceHandler("/images/uploadfile/**").addResourceLocations("file:E:/sharefood/src/main/resources/static/images/uploadfile");
+        /*TODO 项目转移到其他文件夹时 这里的路劲需要更改*/
     }
 
     @Override
@@ -33,8 +37,8 @@ public class WebConfigurer implements WebMvcConfigurer {
         registry.addViewController("/detailfood").setViewName("index-2");
         registry.addViewController("/foodblog").setViewName("index-3");
         registry.addViewController("/login").setViewName("module/login");
-        registry.addViewController("/admin").setViewName("monitor/admin");
-        registry.addViewController("/sysadmin").setViewName("monitor/sysadmin");
+        registry.addViewController("/api/admin").setViewName("monitor/admin");
+        registry.addViewController("/api/sysadmin").setViewName("monitor/sysadmin");
    }
 
 }

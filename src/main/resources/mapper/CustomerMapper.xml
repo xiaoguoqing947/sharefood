@@ -207,4 +207,7 @@
       ispl = #{ispl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="userByLogin" resultMap="BaseResultMap">
+    select * from t_customer where username=#{un} and password=#{pwd}
+  </select>
 </mapper>

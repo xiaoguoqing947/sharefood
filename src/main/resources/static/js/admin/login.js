@@ -5,18 +5,53 @@ $(function () {
         var userpwd = $("#userpwd").val();
         console.log(userpwd)
         if (username != '' && userpwd != '') {
-            saveInfo();
             $.ajax({
                 type: "POST",
-                url: '#',
-                data: {username: username, userpwd: md5(userpwd)},
+                url: '/login.action',
+                data: {username: username, password: md5(userpwd)},
                 success: function (data) {
+                    if(data.status == 'success'){
+                        saveInfo();
+                        location.href='/?isAdmin=no';
+                    }
+                    else{
+                        $("#username").val('');
+                        $("#userpwd").val('');
+                        toastr.error('用户名或密码错误，请重新输入！');
+                    }
                 }
             });
         }else{
             toastr.info('用户名或密码不为空！');
             $("#username").val("");
             $("#userpwd").val("");
+        }
+    });
+    /*管理员登录*/
+    $('#login_admin_btn').click(function () {
+        var name=$('#admin_name').val();
+        var pwd=$('#admin_pwd').val();
+        console.log(name+'---'+pwd)
+        if (name.length > 0 && pwd.length > 0) {
+            $.ajax(
+                {
+                    url: "/loginAdmin.action",
+                    type: 'post',
+                    dataType: 'JSON',
+                    data: {username:name,password:md5(pwd)},
+                    success: function (data) {
+                        if (data.status == 'success') {
+                            window.location.href='/?isAdmin=yes';
+                        } else {
+                            $('#admin_name').val('');
+                            $('#admin_pwd').val('');
+                            toastr.error('账号或密码错误，请重新输入');
+                        }
+                    }
+                }
+            )
+        }else{
+            toastr.info('用户名或密码不为空！');
         }
     });
     //取回密码
@@ -44,33 +79,6 @@ $(function () {
     //注册用户
     $('#regist').click(function () {
 
-    });
-    /*管理员登录*/
-    $('#login_admin_btn').click(function () {
-        var name=$('#admin_name').val();
-        var pwd=$('#admin_pwd').val();
-        console.log(name+'---'+pwd)
-        if (name.length > 0 && pwd.length > 0) {
-            $.ajax(
-                {
-                    url: "/loginAdmin.action",
-                    type: 'post',
-                    dataType: 'JSON',
-                    data: {username:name,password:md5(pwd)},
-                    success: function (data) {
-                        if (data.status == 'success') {
-                            window.location.href='/sysadmin';
-                        } else {
-                            $('#admin_name').val('');
-                            $('#admin_pwd').val('');
-                            toastr.error('账号或密码错误，请重新输入');
-                        }
-                    }
-                }
-            )
-        }else{
-            toastr.info('用户名或密码不为空！');
-        }
     });
 
     /*进入管理员登录界面*/
@@ -137,7 +145,7 @@ $(function () {
         Then.setTime(Then.getTime() + 1866240000000);
         document.cookie = "username=" + username + "%%" + password + ";expires=" + Then.toGMTString();
     }
-
+    //取出cookie
     function GetCookie() {
         var nmpsd;
         var nm;
