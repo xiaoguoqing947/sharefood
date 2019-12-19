@@ -40,9 +40,9 @@
                         <nav>
                             <ul class="sf-menu">
                                 <li ><a th:href="'/?isAdmin='+${statu}">主页面</a></li>
-                                <li><a href="/food">美食</a></li>
-                                <li><a href="/detailfood">美食详情界面</a></li>
-                                <li><a href="/foodblog">博客</a></li>
+                                <li><a th:href="'/food?isAdmin='+${statu}">美食</a></li>
+                                <li><a th:href="'/detailfood?isAdmin='+${statu}">美食详情界面</a></li>
+                                <li><a th:href="'/foodblog?isAdmin='+${statu}">博客</a></li>
                                 <li th:switch="${statu}">
                                     <span th:case="unlogin">用户名</span>
                                     <span th:case="admin">欢迎您管理员</span>
@@ -50,8 +50,8 @@
                                     <span th:case="*">用户名</span>    <!--默认的 case 相当于default-->
                                 </li>
                                 <li th:switch="${statu}" >
-                                    <a th:case="unlogin"><a href="/login">登录</a></a>
-                                    <a th:case="*"><a href="/loginout.action">注销</a></a>    <!--默认的 case 相当于default-->
+                                    <a th:case="unlogin" href="/login">登录</a>
+                                    <a th:case="*" href="/loginout.action">注销</a>      <!--默认的 case 相当于default-->
                                 </li>
                                 <li th:switch="${statu}">
                                     <a th:case="unlogin" href="/login">个人中心</a>
