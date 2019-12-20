@@ -10,6 +10,12 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
     <title>后台管理用户界面</title>
     <link href="/dist/css/style.min.css" rel="stylesheet">
+
+    <script src="/js/jquery.js"></script>
+    <script src="/dist/js/popper.min.js"></script>
+    <script src="/dist/js/bootstrap.min.js"></script>
+    <script src="/dist/js/custom.js"></script>
+    <script src="/js/admin/admin.js"></script>
 </head>
 
 <body>
@@ -17,7 +23,7 @@
         <header class="topbar" data-navbarbg="skin5">
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-header" data-logobg="skin5">
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/api/admin">
                         <b class="logo-icon">
                             <img src="/images/logo-light-icon.png" alt="homepage" class="light-logo" />
                         </b>
@@ -40,8 +46,8 @@
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/images/users/4.jpg" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <a class="dropdown-item" href="/?isAdmin=user"><i class="fa mdi-home m-r-5 m-l-5"></i> 返回主页</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i> 个人信息</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="fa fa-power-off m-r-5 m-l-5"></i> 退出</a>
+                                <a class="dropdown-item" href="javascript:void(0)" onclick="reloadMainRight('/page/customerInfo.html')"><i class="ti-user m-r-5 m-l-5"></i> 个人信息</a>
+                                <a class="dropdown-item" href="/loginout.action"><i class="fa fa-power-off m-r-5 m-l-5"></i> 退出</a>
                             </div>
                         </li>
                     </ul>
@@ -60,7 +66,7 @@
                             <div class="user-profile d-flex no-block dropdown m-t-20">
                                 <div class="user-pic"><img src="/images/users/4.jpg" alt="users" class="rounded-circle" width="40" /></div>
                                 <div class="user-content hide-menu m-l-10">
-                                    <a href="javascript:void(0)" class="" id="Userdd" role="button"  aria-haspopup="true" aria-expanded="false">
+                                    <a href="/api/admin" class="" id="Userdd" role="button"  aria-haspopup="true" aria-expanded="false">
                                         <h5 class="m-b-0 user-name font-medium">蔡包包</h5>
                                         <span class="op-5 user-email">1561325435@qq.com</span>
                                     </a>
@@ -70,13 +76,13 @@
                         </li>
                         <li class="p-15 m-t-10"><a href="javascript:void(0)" class="btn btn-block create-btn text-white no-block d-flex align-items-center"><i class="fa fa-plus-square"></i> <span class="hide-menu m-l-5">Create New</span> </a></li>
                         <!-- User Profile-->
-                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">个人信息</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="javascript:void(0)" onclick="reloadMainRight('/page/customerInfo.html')" aria-expanded="false"><i class="mdi mdi-account-network"></i><span class="hide-menu">个人信息</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-border-all"></i><span class="hide-menu">美食分享</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Icon</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Blank</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false"><i class="mdi mdi-alert-outline"></i><span class="hide-menu">404</span></a></li>
                     </ul>
-                    
+
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -91,7 +97,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">主页</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">个人信息</li>
+                                    <li class="breadcrumb-item active" aria-current="page"  href="javascript:void(0)" onclick="reloadMainRight('/pages/usercontext.html')">个人信息</li>
                                 </ol>
                             </nav>
                         </div>
@@ -99,14 +105,12 @@
                 </div>
             </div>
             <div class="container-fluid">
-                    文本内容
+                <div id="context">
+                </div>
             </div>
         </div>
     </div>
-    <script src="/js/jquery.js"></script>
-    <script src="/dist/js/popper.min.js"></script>
-    <script src="/dist/js/bootstrap.min.js"></script>
-    <script src="/dist/js/custom.js"></script>
+
 </body>
 
 </html>

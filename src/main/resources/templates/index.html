@@ -55,8 +55,8 @@
                                 </li>
                                 <li th:switch="${statu}">
                                     <a th:case="unlogin" href="/login">个人中心</a>
-                                    <a th:case="admin" href="/sysadmin">个人中心</a>
-                                    <a th:case="user" href="/admin">个人中心</a>
+                                    <a th:case="admin" href="/api/sysadmin">个人中心</a>
+                                    <a th:case="user" href="/api/admin">个人中心</a>
                                     <a th:case="*" href="/login">个人中心</a>    <!--默认的 case 相当于default-->
                                 </li>
                             </ul>

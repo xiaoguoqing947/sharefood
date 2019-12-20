@@ -3,25 +3,24 @@ $(function () {
     $("#button").click(function () {
         var username = $("#username").val();
         var userpwd = $("#userpwd").val();
-        console.log(userpwd)
+        console.log(userpwd);
         if (username != '' && userpwd != '') {
             $.ajax({
                 type: "POST",
                 url: '/login.action',
                 data: {username: username, password: md5(userpwd)},
                 success: function (data) {
-                    if(data.status == 'success'){
+                    if (data.status == 'success') {
                         saveInfo();
-                        location.href='/?isAdmin=no';
-                    }
-                    else{
+                        location.href = '/?isAdmin=no';
+                    } else {
                         $("#username").val('');
                         $("#userpwd").val('');
                         toastr.error('用户名或密码错误，请重新输入！');
                     }
                 }
             });
-        }else{
+        } else {
             toastr.info('用户名或密码不为空！');
             $("#username").val("");
             $("#userpwd").val("");
@@ -29,19 +28,19 @@ $(function () {
     });
     /*管理员登录*/
     $('#login_admin_btn').click(function () {
-        var name=$('#admin_name').val();
-        var pwd=$('#admin_pwd').val();
-        console.log(name+'---'+pwd)
+        var name = $('#admin_name').val();
+        var pwd = $('#admin_pwd').val();
+        console.log(name + '---' + pwd);
         if (name.length > 0 && pwd.length > 0) {
             $.ajax(
                 {
                     url: "/loginAdmin.action",
                     type: 'post',
                     dataType: 'JSON',
-                    data: {username:name,password:md5(pwd)},
+                    data: {username: name, password: md5(pwd)},
                     success: function (data) {
                         if (data.status == 'success') {
-                            window.location.href='/?isAdmin=yes';
+                            window.location.href = '/?isAdmin=yes';
                         } else {
                             $('#admin_name').val('');
                             $('#admin_pwd').val('');
@@ -50,7 +49,7 @@ $(function () {
                     }
                 }
             )
-        }else{
+        } else {
             toastr.info('用户名或密码不为空！');
         }
     });
@@ -58,7 +57,7 @@ $(function () {
     $("#reget_pwd").click(function () {
         var usrmail = $("#usrmail").val();
         if (!Test_email(usrmail)) {
-            toastr.info("请输入正确的邮箱！")
+            toastr.info("请输入正确的邮箱！");
             return false;
         }
         $.ajax({
@@ -77,8 +76,86 @@ $(function () {
         });
     });
     //注册用户
-    $('#regist').click(function () {
-
+    $("#regist-admin").bind("click", function () {
+        window.location.href = "/register";
+    });
+    $("#registForm").validate({
+        // debug: true,//表单调试时使用
+        errorPlacement: function (error, element) {
+            error.appendTo(element.parent()); //直接把错误信息加在验证元素后··
+        },
+        submitHandler: function (form) {
+            var password = md5($('#pwd').val());
+            var username = $('#uname').val();
+            var email = $('#email').val();
+            $.ajax({
+                url: "/register.action",
+                type: 'post',
+                dataType: 'JSON',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    password: password,
+                    username: username,
+                    email: email
+                }),
+                success: function (data) {
+                    console.log(data);
+                    if (data.status == 'success') {
+                        alert("恭喜您，注册成功");
+                        window.location.href = '/login';
+                    } else if (data.status == 'fail') {
+                        toastr.error("注册失败");
+                    }
+                }
+            });
+        },
+        rules: {
+            uname: {
+                required: true,
+                remote: {
+                    url: "/validateName.action",
+                    type: 'post',
+                    dataType: "json",
+                    data: {
+                        uname: function () {
+                            return $("#uname").val();
+                        }
+                    }
+                }
+            },
+            email: {
+                required: true,
+                email: true
+            },
+            pwd: {
+                required: true,
+                minlength: 6,
+            },
+            repwd: {
+                required: true,
+                minlength: 6,
+                equalTo: "#pwd",
+            }
+        },
+        messages: {
+            pwd: {
+                required: " 密码不为空  ",
+                minlength: " 密码长度不能小于 6 个字母  ",
+            },
+            repwd: {
+                required: " 密码不为空  ",
+                minlength: " 密码长度不能小于 6 个字母  ",
+                equalTo: " 两次密码输入不一致  "
+            },
+            email: {
+                required: " 邮箱不为空  ",
+                email: " 邮箱格式错误！  "
+            },
+            uname: {
+                required: " 用户名不为空  ",
+                remote: " 用户名已存在  "
+            }
+        }
     });
 
     /*进入管理员登录界面*/
@@ -99,7 +176,7 @@ $(function () {
         $("#admin_login_model").hide();
         $("#forget_model").hide();
         $("#regist_model").show();
-    })
+    });
 
 
     //忘记密码界面返回
@@ -138,19 +215,21 @@ $(function () {
         } catch (e) {
 
         }
-    }
+    };
+
     //密码存入cookie时没有进行加密，因为前端md5加密没有办法解密
     function SetCookie(username, password) {
         var Then = new Date();
         Then.setTime(Then.getTime() + 1866240000000);
         document.cookie = "username=" + username + "%%" + password + ";expires=" + Then.toGMTString();
     }
+
     //取出cookie
     function GetCookie() {
         var nmpsd;
         var nm;
         var psd;
-        var cookieString = new String(document.cookie);
+        var cookieString = String(document.cookie);
         var cookieHeader = "username=";
         var beginPosition = cookieString.indexOf(cookieHeader);
         cookieString = cookieString.substring(beginPosition);
@@ -172,6 +251,7 @@ $(function () {
             }
         }
     }
+
     GetCookie();
 });
 

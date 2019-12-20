@@ -1,5 +1,7 @@
 package com.example.sharefood.conf;
 
+import com.example.sharefood.conf.intercepors.IndexBlogInterceptor;
+import com.example.sharefood.conf.intercepors.IndexFoodInterceptor;
 import com.example.sharefood.conf.intercepors.IndexInterceptor;
 import com.example.sharefood.conf.intercepors.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +17,18 @@ public class WebConfigurer implements WebMvcConfigurer {
     private LoginInterceptor loginInterceptor;
     @Autowired
     private IndexInterceptor indexInterceptor;
+    @Autowired
+    private IndexFoodInterceptor indexFoodInterceptor;
+    @Autowired
+    private IndexBlogInterceptor indexBlogInterceptor;
     // 这个方法用来注册拦截器，我们自己写好的拦截器需要通过这里添加注册才能生效
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor).addPathPatterns("/api/**");
-        registry.addInterceptor(indexInterceptor).addPathPatterns("/");
+        /*拦截器这里有点问题 TODO*/
+        registry.addInterceptor(indexInterceptor).addPathPatterns("/","/detailfood");
+        registry.addInterceptor(indexFoodInterceptor).addPathPatterns("/food");
+        registry.addInterceptor(indexBlogInterceptor).addPathPatterns("/foodblog");
         //关闭了拦截器，项目完成后开启
     }
 

@@ -17,4 +17,6 @@ public interface CustomerMapper {
     int updateByPrimaryKey(Customer record);
 
     Customer userByLogin(@Param("un") String username, @Param("pwd") String password);
+
+    Customer queryCustomerByUsername(@Param("un")String uname);
 }

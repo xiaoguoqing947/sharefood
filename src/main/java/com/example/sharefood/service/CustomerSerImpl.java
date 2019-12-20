@@ -38,4 +38,26 @@ public class CustomerSerImpl implements CustomerSer {
         session.removeAttribute("tokenList");
         session.removeAttribute("tip");
     }
+
+    @Override
+    public boolean addCustomer(Customer customer) {
+        int num = 0;
+        try {
+            num = customerMapper.insertSelective(customer);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+        return num > 0;
+    }
+
+    @Override
+    public boolean validateName(String uname) {
+        Customer customer = null;
+        try {
+            customer = customerMapper.queryCustomerByUsername(uname);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+        return customer == null;
+    }
 }

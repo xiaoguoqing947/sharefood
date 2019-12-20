@@ -10,4 +10,8 @@ public interface CustomerSer {
     void addSession(HttpServletRequest request, Customer customer);//登录成功后添加session
 
     void destroySession(HttpServletRequest request);//退出登录或者超时之后销毁session
+
+    boolean addCustomer(Customer customer);
+
+    boolean validateName(String uname);
 }
