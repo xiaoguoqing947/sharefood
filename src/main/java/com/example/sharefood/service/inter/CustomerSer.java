@@ -1,6 +1,7 @@
 package com.example.sharefood.service.inter;
 
 import com.example.sharefood.domain.Customer;
+import com.example.sharefood.domain.dto.customer.UpdateCustomerForm;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,4 +15,10 @@ public interface CustomerSer {
     boolean addCustomer(Customer customer);
 
     boolean validateName(String uname);
+
+    Customer findCustomerByUName(String username);
+
+    boolean updateCustomer(UpdateCustomerForm form, HttpServletRequest request);
+
+    boolean updateCustomerHeadPic(Customer customer);
 }

@@ -25,7 +25,6 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor).addPathPatterns("/api/**");
-        /*拦截器这里有点问题 TODO*/
         registry.addInterceptor(indexInterceptor).addPathPatterns("/","/detailfood");
         registry.addInterceptor(indexFoodInterceptor).addPathPatterns("/food");
         registry.addInterceptor(indexBlogInterceptor).addPathPatterns("/foodblog");
@@ -36,7 +35,8 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        registry.addResourceHandler("/images/uploadfile/**").addResourceLocations("file:E:/sharefood/src/main/resources/static/images/uploadfile");
+        registry.addResourceHandler("/images/uploadfile/**").addResourceLocations("file:E:/sharefood/src/main/resources/static/images/uploadfile/");
+        registry.addResourceHandler("/images/users/**").addResourceLocations("file:E:/sharefood/src/main/resources/static/images/users/");
         /*TODO 项目转移到其他文件夹时 这里的路劲需要更改*/
     }
 
@@ -46,7 +46,6 @@ public class WebConfigurer implements WebMvcConfigurer {
         registry.addViewController("/detailfood").setViewName("index-2");
         registry.addViewController("/foodblog").setViewName("index-3");
         registry.addViewController("/login").setViewName("module/login");
-        registry.addViewController("/api/admin").setViewName("monitor/admin");
         registry.addViewController("/api/sysadmin").setViewName("monitor/sysadmin");
    }
 

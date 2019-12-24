@@ -1,7 +1,7 @@
 window.onload = function () {
 //要初始化的东西
     $("#context").empty();
-    // $("#context").load('/page/customerInfo.html');
+    $("#context").load('/page/customerInfo.html');
 };
 
 function reloadMainRight(url) {

@@ -6,6 +6,7 @@ import com.example.sharefood.mapping.CustomerMapper;
 import com.example.sharefood.service.inter.AdminSer;
 import com.example.sharefood.service.inter.CustomerSer;
 import com.example.sharefood.util.Token;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +40,8 @@ public class LoginCtrl {
         if (result) {
             rep.getSession().setAttribute("tip","admin_login_success");
             resultMap.put("status", "success");
+            String token = Token.getTokenString(rep.getSession());
+            resultMap.put("token", token);
         }
         return resultMap;
     }
@@ -89,4 +92,15 @@ public class LoginCtrl {
         boolean flag = customerSer.validateName(uname);
         return flag;
     }
+
+    /*由此跳转到用户个人中心界面*/
+    @GetMapping("/api/admin")
+    public String  customerAdmin(Model model,HttpServletRequest request) {
+        Customer customer= (Customer) request.getSession().getAttribute("admin");
+        Customer customerInfo=customerSer.findCustomerByUName(customer.getUsername());
+        model.addAttribute("user",customerInfo);
+        return "monitor/admin";
+    }
+
+
 }

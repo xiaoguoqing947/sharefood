@@ -3,6 +3,27 @@ package com.example.sharefood.domain;
 import java.util.Date;
 
 public class Customer {
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", sex='" + sex + '\'' +
+                ", age='" + age + '\'' +
+                ", address='" + address + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", insertdate=" + insertdate +
+                ", headpic='" + headpic + '\'' +
+                ", level='" + level + '\'' +
+                ", isft='" + isft + '\'' +
+                ", ispl='" + ispl + '\'' +
+                '}';
+    }
+
     private Integer id;
 
     private String username;

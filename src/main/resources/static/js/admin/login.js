@@ -1,5 +1,5 @@
 $(function () {
-    /*登录*/
+    /*普通用户登录*/
     $("#button").click(function () {
         var username = $("#username").val();
         var userpwd = $("#userpwd").val();
@@ -11,6 +11,7 @@ $(function () {
                 data: {username: username, password: md5(userpwd)},
                 success: function (data) {
                     if (data.status == 'success') {
+                        $.zui.store.set('token', data.token);
                         saveInfo();
                         location.href = '/?isAdmin=no';
                     } else {
@@ -40,6 +41,7 @@ $(function () {
                     data: {username: name, password: md5(pwd)},
                     success: function (data) {
                         if (data.status == 'success') {
+                            $.zui.store.set('token', data.token);
                             window.location.href = '/?isAdmin=yes';
                         } else {
                             $('#admin_name').val('');
