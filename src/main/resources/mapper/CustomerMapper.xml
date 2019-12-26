@@ -1,218 +1,227 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.sharefood.mapping.CustomerMapper">
-  <resultMap id="BaseResultMap" type="com.example.sharefood.domain.Customer">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
-    <result column="sex" jdbcType="VARCHAR" property="sex" />
-    <result column="age" jdbcType="VARCHAR" property="age" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="idcard" jdbcType="VARCHAR" property="idcard" />
-    <result column="insertDate" jdbcType="TIMESTAMP" property="insertdate" />
-    <result column="headPic" jdbcType="VARCHAR" property="headpic" />
-    <result column="level" jdbcType="VARCHAR" property="level" />
-    <result column="isft" jdbcType="VARCHAR" property="isft" />
-    <result column="ispl" jdbcType="VARCHAR" property="ispl" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, username, password, email, name, phone, sex, age, address, idcard, insertDate, 
+    <resultMap id="BaseResultMap" type="com.example.sharefood.domain.Customer">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="age" jdbcType="VARCHAR" property="age"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="idcard" jdbcType="VARCHAR" property="idcard"/>
+        <result column="insertDate" jdbcType="TIMESTAMP" property="insertdate"/>
+        <result column="headPic" jdbcType="VARCHAR" property="headpic"/>
+        <result column="level" jdbcType="VARCHAR" property="level"/>
+        <result column="isft" jdbcType="VARCHAR" property="isft"/>
+        <result column="ispl" jdbcType="VARCHAR" property="ispl"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, username, password, email, name, phone, sex, age, address, idcard, insertDate,
     headPic, level, isft, ispl
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_customer
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_customer
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.example.sharefood.domain.Customer">
-    insert into t_customer (id, username, password, 
-      email, name, phone, 
-      sex, age, address, 
-      idcard, insertDate, headPic, 
-      level, isft, ispl)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{idcard,jdbcType=VARCHAR}, #{insertdate,jdbcType=TIMESTAMP}, #{headpic,jdbcType=VARCHAR}, 
-      #{level,jdbcType=VARCHAR}, #{isft,jdbcType=VARCHAR}, #{ispl,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.example.sharefood.domain.Customer">
-    insert into t_customer
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="phone != null">
-        phone,
-      </if>
-      <if test="sex != null">
-        sex,
-      </if>
-      <if test="age != null">
-        age,
-      </if>
-      <if test="address != null">
-        address,
-      </if>
-      <if test="idcard != null">
-        idcard,
-      </if>
-      <if test="insertdate != null">
-        insertDate,
-      </if>
-      <if test="headpic != null">
-        headPic,
-      </if>
-      <if test="level != null">
-        level,
-      </if>
-      <if test="isft != null">
-        isft,
-      </if>
-      <if test="ispl != null">
-        ispl,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=VARCHAR},
-      </if>
-      <if test="age != null">
-        #{age,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="idcard != null">
-        #{idcard,jdbcType=VARCHAR},
-      </if>
-      <if test="insertdate != null">
-        #{insertdate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="headpic != null">
-        #{headpic,jdbcType=VARCHAR},
-      </if>
-      <if test="level != null">
-        #{level,jdbcType=VARCHAR},
-      </if>
-      <if test="isft != null">
-        #{isft,jdbcType=VARCHAR},
-      </if>
-      <if test="ispl != null">
-        #{ispl,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.sharefood.domain.Customer">
-    update t_customer
-    <set>
-      <if test="username != null">
-        username = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        sex = #{sex,jdbcType=VARCHAR},
-      </if>
-      <if test="age != null">
-        age = #{age,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="idcard != null">
-        idcard = #{idcard,jdbcType=VARCHAR},
-      </if>
-      <if test="insertdate != null">
-        insertDate = #{insertdate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="headpic != null">
-        headPic = #{headpic,jdbcType=VARCHAR},
-      </if>
-      <if test="level != null">
-        level = #{level,jdbcType=VARCHAR},
-      </if>
-      <if test="isft != null">
-        isft = #{isft,jdbcType=VARCHAR},
-      </if>
-      <if test="ispl != null">
-        ispl = #{ispl,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.sharefood.domain.Customer">
-    update t_customer
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=VARCHAR},
-      age = #{age,jdbcType=VARCHAR},
-      address = #{address,jdbcType=VARCHAR},
-      idcard = #{idcard,jdbcType=VARCHAR},
-      insertDate = #{insertdate,jdbcType=TIMESTAMP},
-      headPic = #{headpic,jdbcType=VARCHAR},
-      level = #{level,jdbcType=VARCHAR},
-      isft = #{isft,jdbcType=VARCHAR},
-      ispl = #{ispl,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <select id="userByLogin" resultMap="BaseResultMap">
-    select * from t_customer where username=#{un} and password=#{pwd}
-  </select>
-  <select id="queryCustomerByUsername" resultMap="BaseResultMap">
-    select * from t_customer
-    where username=#{un}
-  </select>
-
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_customer
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from t_customer
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.example.sharefood.domain.Customer">
+        insert into t_customer (id, username, password,
+                                email, name, phone,
+                                sex, age, address,
+                                idcard, insertDate, headPic,
+                                level, isft, ispl)
+        values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{email,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
+                #{sex,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+                #{idcard,jdbcType=VARCHAR}, #{insertdate,jdbcType=TIMESTAMP}, #{headpic,jdbcType=VARCHAR},
+                #{level,jdbcType=VARCHAR}, #{isft,jdbcType=VARCHAR}, #{ispl,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.example.sharefood.domain.Customer">
+        insert into t_customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="idcard != null">
+                idcard,
+            </if>
+            <if test="insertdate != null">
+                insertDate,
+            </if>
+            <if test="headpic != null">
+                headPic,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="isft != null">
+                isft,
+            </if>
+            <if test="ispl != null">
+                ispl,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="idcard != null">
+                #{idcard,jdbcType=VARCHAR},
+            </if>
+            <if test="insertdate != null">
+                #{insertdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="headpic != null">
+                #{headpic,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=VARCHAR},
+            </if>
+            <if test="isft != null">
+                #{isft,jdbcType=VARCHAR},
+            </if>
+            <if test="ispl != null">
+                #{ispl,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.sharefood.domain.Customer">
+        update t_customer
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="idcard != null">
+                idcard = #{idcard,jdbcType=VARCHAR},
+            </if>
+            <if test="insertdate != null">
+                insertDate = #{insertdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="headpic != null">
+                headPic = #{headpic,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=VARCHAR},
+            </if>
+            <if test="isft != null">
+                isft = #{isft,jdbcType=VARCHAR},
+            </if>
+            <if test="ispl != null">
+                ispl = #{ispl,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.sharefood.domain.Customer">
+        update t_customer
+        set username   = #{username,jdbcType=VARCHAR},
+            password   = #{password,jdbcType=VARCHAR},
+            email      = #{email,jdbcType=VARCHAR},
+            name       = #{name,jdbcType=VARCHAR},
+            phone      = #{phone,jdbcType=VARCHAR},
+            sex        = #{sex,jdbcType=VARCHAR},
+            age        = #{age,jdbcType=VARCHAR},
+            address    = #{address,jdbcType=VARCHAR},
+            idcard     = #{idcard,jdbcType=VARCHAR},
+            insertDate = #{insertdate,jdbcType=TIMESTAMP},
+            headPic    = #{headpic,jdbcType=VARCHAR},
+            level      = #{level,jdbcType=VARCHAR},
+            isft       = #{isft,jdbcType=VARCHAR},
+            ispl       = #{ispl,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="userByLogin" resultMap="BaseResultMap">
+        select *
+        from t_customer
+        where username = #{un}
+          and password = #{pwd}
+    </select>
+    <select id="queryCustomerByUsername" resultMap="BaseResultMap">
+        select *
+        from t_customer
+        where username = #{un}
+    </select>
+    <select id="findList" parameterType="map" resultMap="BaseResultMap">
+        select *
+        from t_customer
+        where 1=1
+    </select>
 </mapper>

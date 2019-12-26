@@ -23,7 +23,7 @@ $(document).ready(function () {
                         '                            allowfullscreen></iframe>\n' +
                         '                </div>';
                     $('#leftBottomCard').html(html);
-                    //TODO rightCart will do it!
+                    //TODO rightCart s do it!
                     $('#name').val(result.customerInfo.name);
                     $('#email').val(result.customerInfo.email);
                     if (result.customerInfo.sex == null || result.customerInfo.sex == '' || result.customerInfo.sex == 0) {

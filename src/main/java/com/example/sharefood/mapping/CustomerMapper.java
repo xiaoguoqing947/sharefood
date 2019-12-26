@@ -3,6 +3,9 @@ package com.example.sharefood.mapping;
 import com.example.sharefood.domain.Customer;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+import java.util.Map;
+
 public interface CustomerMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -19,4 +22,6 @@ public interface CustomerMapper {
     Customer userByLogin(@Param("un") String username, @Param("pwd") String password);
 
     Customer queryCustomerByUsername(@Param("un")String uname);
+
+    List<Customer> findList(Map<String, Object> searchMap);
 }

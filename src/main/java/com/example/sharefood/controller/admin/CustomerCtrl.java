@@ -6,10 +6,7 @@ import com.example.sharefood.service.inter.CustomerSer;
 import com.example.sharefood.util.ValidateMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -44,6 +41,18 @@ public class CustomerCtrl {
             resultMap.put("status", "success");
         } else {
             resultMap.put("status", "fail");
+        }
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/delete")
+    public Map<String, Object> deleteMenu(@RequestParam("id") String id, HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        if (ValidateMethod.isTokenCheck(request) && customerSer.deleteCustomer(id)) {
+            resultMap.put("success", "1");
+        } else {
+            resultMap.put("success", "0");
         }
         return resultMap;
     }

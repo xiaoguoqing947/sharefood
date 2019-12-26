@@ -1,0 +1,148 @@
+<div class="page-breadcrumb">
+    <div class="row align-items-center">
+        <div class="col-5">
+            <h4 class="page-title">系统用户</h4>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">主页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">主页图鉴信息管理</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="panel">
+                    <div class="panel-heading">
+                        图鉴查询
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">图片标题名</span>
+                                    <input type="text" id="picName" name="picName" placeholder="图片名" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-success" type="button" id="searchBtn"><i class="fa fa-search"
+                                                                                                aria-hidden="true"></i>搜索
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="datagrid">
+                    <div class="search-box">
+                        <button class="btn btn-info " type="button" id="updateBtn"><i class="fa fa-edit"></i>信息修改</button>
+                        <button class="btn " type="button" id="detailBtn"><i class="fa fa-info"></i>信息详情</button>
+                    </div>
+                    <div class="datagrid datagrid-striped" id="listDataGrid" data-ride="datagrid"></div>
+                    <div id="listPager" class="pager" data-ride="pager"></div>
+                </div>
+            </div>
+            <div class="col-md-12" style="height: 80px">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="updateModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改图鉴信息</h4>
+            </div>
+            <form id="updateForm" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="pic" class="col-sm-3 control-label">图片:<font color="red">*</font></label>
+                            <div class="input-group col-sm-9 text-center">
+                                <img src="/images/user1.jpg" width="100px" height="100px" id="tjPic">
+                                <input class="form-control" id="pic" name="pic" type="file" style="opacity:0;width:125px;height:100%;position:absolute;left:122px;top:0px">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-sm-3 control-label">图鉴名称:<font color="red">*</font></label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="title" name="title" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tjtype" class="col-sm-3 control-label">图鉴类型:<font color="red">*</font></label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="tjtype" name="tjtype" type="text" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tjdesc" class="col-sm-3 control-label">图鉴描述:<font color="red">*</font></label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" id="tjdesc" name="tjdesc" rows="6" cols="60"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="center-block">
+                        <input type="hidden" name="id" id="id"/>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" id="updateSaveBtn" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--详情界面-->
+<div class="modal fade" id="detailModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">图鉴详情</h4>
+            </div>
+            <form id="detailForm">
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="pic" class="col-sm-3 control-label">图片:<font color="red">*</font></label>
+                            <div class="input-group col-sm-9 text-center">
+                                <img src="/images/user1.jpg" width="100px" height="100px" id="detailPic">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailTitle" class="col-sm-3 control-label">图鉴名称:<font color="red">*</font></label>
+                            <div class="col-sm-9">
+                                <span class="form-control" id="detailTitle" name="detailTitle" type="text"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailTjtype" class="col-sm-3 control-label">图鉴类型:<font color="red">*</font></label>
+                            <div class="col-sm-9">
+                                <span class="form-control" id="detailTjtype" name="detailTjtype" type="text" ></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="detailTjdesc" class="col-sm-3 control-label">图鉴描述:<font color="red">*</font></label>
+                            <div class="col-sm-9">
+                                <span class="form-control" id="detailTjdesc" name="detailTjdesc" rows="6" cols="60"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default " data-dismiss="modal">关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/js/messages_zh.js"></script>
+<script type="text/javascript" src="/js/admin/sysTj.js"></script>

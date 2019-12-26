@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class CustomerSerImpl implements CustomerSer {
@@ -88,6 +90,22 @@ public class CustomerSerImpl implements CustomerSer {
         int num = 0;
         try {
             num = customerMapper.updateByPrimaryKeySelective(customer);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+        return num > 0;
+    }
+
+    @Override
+    public List<Customer> findCustomerList(Map<String, Object> searchMap) {
+        return customerMapper.findList(searchMap);
+    }
+
+    @Override
+    public boolean deleteCustomer(String id) {
+        int num = 0;
+        try {
+            num = customerMapper.deleteByPrimaryKey(Integer.parseInt(id));
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
         }

@@ -4,6 +4,8 @@ import com.example.sharefood.domain.Customer;
 import com.example.sharefood.domain.dto.customer.UpdateCustomerForm;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 public interface CustomerSer {
     public Customer login(String username, String password);
@@ -21,4 +23,8 @@ public interface CustomerSer {
     boolean updateCustomer(UpdateCustomerForm form, HttpServletRequest request);
 
     boolean updateCustomerHeadPic(Customer customer);
+
+    List<Customer> findCustomerList(Map<String, Object> searchMap);
+
+    boolean deleteCustomer(String id);
 }

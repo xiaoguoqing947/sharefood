@@ -37,6 +37,7 @@ public class WebConfigurer implements WebMvcConfigurer {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/images/uploadfile/**").addResourceLocations("file:E:/sharefood/src/main/resources/static/images/uploadfile/");
         registry.addResourceHandler("/images/users/**").addResourceLocations("file:E:/sharefood/src/main/resources/static/images/users/");
+        registry.addResourceHandler("/images/tujian/**").addResourceLocations("file:E:/sharefood/src/main/resources/static/images/tujian/");
         /*TODO 项目转移到其他文件夹时 这里的路劲需要更改*/
     }
 
@@ -46,7 +47,6 @@ public class WebConfigurer implements WebMvcConfigurer {
         registry.addViewController("/detailfood").setViewName("index-2");
         registry.addViewController("/foodblog").setViewName("index-3");
         registry.addViewController("/login").setViewName("module/login");
-        registry.addViewController("/api/sysadmin").setViewName("monitor/sysadmin");
    }
 
 }
