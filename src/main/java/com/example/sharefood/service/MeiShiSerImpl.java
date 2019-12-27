@@ -37,4 +37,31 @@ public class MeiShiSerImpl implements MeiShiSer {
         }
         return num > 0;
     }
+
+    @Override
+    public MeiShi findMsById(String id) {
+        return meiShiMapper.selectByPrimaryKey(Integer.parseInt(id));
+    }
+
+    @Override
+    public boolean updateMs(MeiShi meiShi) {
+        int num = 0;
+        try {
+            num = meiShiMapper.updateByPrimaryKeySelective(meiShi);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+        return num > 0;
+    }
+
+    @Override
+    public boolean deleteMs(String id) {
+        int num = 0;
+        try {
+            num = meiShiMapper.deleteByPrimaryKey(Integer.parseInt(id));
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+        return num > 0;
+    }
 }

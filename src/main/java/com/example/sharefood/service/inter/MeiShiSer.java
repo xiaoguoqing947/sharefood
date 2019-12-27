@@ -11,4 +11,10 @@ public interface MeiShiSer {
     List<MeiShi> listMeiShi(Map<String, Object> searchMap);
 
     boolean addMs(MeiShi meiShi);
+
+    MeiShi findMsById(String id);
+
+    boolean updateMs(MeiShi meiShi);
+
+    boolean deleteMs(String id);
 }

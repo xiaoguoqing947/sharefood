@@ -1,5 +1,7 @@
 package com.example.sharefood.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class MeiShi {
@@ -25,8 +27,10 @@ public class MeiShi {
 
     private String isdiscount;
 
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-mm-dd HH:mm")
     private Date discountstime;
 
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-mm-dd HH:mm")
     private Date discountetime;
 
     private String msnumber;

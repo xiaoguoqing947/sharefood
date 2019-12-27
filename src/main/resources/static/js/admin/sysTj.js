@@ -123,9 +123,6 @@ $(document).ready(function () {
     $("#updateSaveBtn").click(function () {
         var updateValite = $("#updateForm").validate({
             rules: {
-                pic: {
-                    "required": true
-                },
                 title: {
                     "required": true
                 },

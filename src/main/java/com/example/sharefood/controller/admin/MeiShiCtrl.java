@@ -2,6 +2,7 @@ package com.example.sharefood.controller.admin;
 
 import com.example.sharefood.domain.*;
 import com.example.sharefood.domain.Dictionary;
+import com.example.sharefood.domain.dto.ms.CheckMsForm;
 import com.example.sharefood.domain.dto.ms.SearchMsForm;
 import com.example.sharefood.service.inter.DicsSer;
 import com.example.sharefood.service.inter.MeiShiSer;
@@ -140,6 +141,129 @@ public class MeiShiCtrl {
             meiShi.setMspic("/images/meishi/" + fileName);
             if (meiShiSer.addMs(meiShi)) {
                 resultMap.put("code", 200);
+            }
+        }
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/initUpdate")
+    public Map<String, Object> initUpdate(@RequestParam("id") String id, HttpServletRequest req) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        if (ValidateMethod.isTokenCheck(req)) {
+            List<Dictionary> dictionarys = dicsSer.findList();
+            List<Tag> tags = tagSer.findList();
+            MeiShi meiShi = meiShiSer.findMsById(id);
+            resultMap.put("meiShi", meiShi);
+            resultMap.put("dictionarys", dictionarys);
+            resultMap.put("tags", tags);
+        }
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/update")
+    public Map<String, Object> updateMeiShi(@RequestParam("updmspic") MultipartFile file, HttpServletRequest request, @RequestParam Map param) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        if (ValidateMethod.isTokenCheck(request)) {
+            MeiShi meiShi = new MeiShi();
+            if (file.isEmpty()) {
+                /*数字字典字段*/
+                meiShi.setRecommendcrowd((String) param.get("updrecommendcrowd"));
+                meiShi.setIsdiscount((String) param.get("updisdiscount"));
+                meiShi.setTypes((String) param.get("updtypes"));
+                /*美食标签*/
+                meiShi.setMstag((String) param.get("updmstag"));
+                /*普通字段*/
+                meiShi.setMsname((String) param.get("updmsname"));
+                meiShi.setMsaddress((String) param.get("updmsaddress"));
+                meiShi.setMsnumber((String) param.get("updmsnumber"));
+                meiShi.setContent((String) param.get("updcontent"));
+                meiShi.setId(Integer.parseInt((String) param.get("updId")));
+                /*时间*/
+                meiShi.setDiscountstime(DateUtils.strToDate((String) param.get("upddiscountstime")));
+                meiShi.setDiscountetime(DateUtils.strToDate((String) param.get("upddiscountetime")));
+                if (meiShiSer.updateMs(meiShi)) {
+                    resultMap.put("code", 200);
+                }
+                return resultMap;
+            } else {
+                String fileName = file.getOriginalFilename();//得到文件名
+                String suffixName = fileName.substring(fileName.lastIndexOf("."));//得到后缀名
+                System.err.println("suffixName:" + suffixName);
+                String filepath = "E:/sharefood/src/main/resources/static/images/meishi/";//指定图片上传到哪个文件夹的路径
+                fileName = UUID.randomUUID() + suffixName;//重新命名图片，变成随机的名字
+                System.err.println("fileName:" + fileName);
+                File dest = new File(filepath + fileName);//在上传的文件夹处创建文件
+                try {
+                    file.transferTo(dest);//把上传的图片写入磁盘中
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                /*数字字典字段*/
+                meiShi.setRecommendcrowd((String) param.get("updrecommendcrowd"));
+                meiShi.setIsdiscount((String) param.get("updisdiscount"));
+                meiShi.setTypes((String) param.get("updtypes"));
+                /*美食标签*/
+                meiShi.setMstag((String) param.get("updmstag"));
+                /*普通字段*/
+                meiShi.setMsname((String) param.get("updmsname"));
+                meiShi.setMsaddress((String) param.get("updmsaddress"));
+                meiShi.setMsnumber((String) param.get("updmsnumber"));
+                meiShi.setContent((String) param.get("updcontent"));
+                meiShi.setId(Integer.parseInt((String) param.get("updId")));
+                /*时间*/
+                meiShi.setDiscountstime(DateUtils.strToDate((String) param.get("upddiscountstime")));
+                meiShi.setDiscountetime(DateUtils.strToDate((String) param.get("upddiscountetime")));
+                /*查询是谁上传的*/
+                meiShi.setMspic("/images/meishi/" + fileName);
+                if (meiShiSer.updateMs(meiShi)) {
+                    resultMap.put("code", 200);
+                }
+            }
+        }
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/delete")
+    public Map<String, Object> deleteMs(@RequestParam("id") String id, HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        if (ValidateMethod.isTokenCheck(request) && meiShiSer.deleteMs(id)) {
+            resultMap.put("success", "1");
+        } else {
+            resultMap.put("success", "0");
+        }
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/initCheck")
+    public Map<String, Object> initCheckMs(@RequestParam("id") String id, HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        if (ValidateMethod.isTokenCheck(request)) {
+            List<Dictionary> dictionarys = dicsSer.findList();
+            MeiShi meiShi = meiShiSer.findMsById(id);
+            resultMap.put("meiShi", meiShi);
+            resultMap.put("dictionarys", dictionarys);
+        }
+        return resultMap;
+    }
+
+    @ResponseBody
+    @PostMapping("/check")
+    public Map<String, Object> check(CheckMsForm form, HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        if (ValidateMethod.isTokenCheck(request)) {
+            MeiShi meiShi = new MeiShi();
+            meiShi.setIsfb(form.getCheckfb());
+            if (form.getCheckId() != null) {
+                meiShi.setId(Integer.parseInt(form.getCheckId()));
+            }
+            if (meiShiSer.updateMs(meiShi)) {
+                resultMap.put("success", "1");
+            } else {
+                resultMap.put("success", "0");
             }
         }
         return resultMap;

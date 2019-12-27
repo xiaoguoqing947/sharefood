@@ -78,9 +78,15 @@ public class TujianCtrl {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         if (ValidateMethod.isTokenCheck(request)) {
             Tujian tujian = new Tujian();
-            System.err.println("传过来的值" + file);
+//            System.err.println("传过来的值" + file);
             if (file.isEmpty()) {
-                System.err.println("上传文件不可为空");
+                tujian.setId(Integer.parseInt((String) param.get("id")));
+                tujian.setTitle((String) param.get("title"));
+                tujian.setTjdesc((String) param.get("tjdesc"));
+                if (tujianSer.updateTj(tujian)) {
+                    resultMap.put("code", 200);
+                }
+                return resultMap;
             }
             String fileName = file.getOriginalFilename();//得到文件名
             String suffixName = fileName.substring(fileName.lastIndexOf("."));//得到后缀名
