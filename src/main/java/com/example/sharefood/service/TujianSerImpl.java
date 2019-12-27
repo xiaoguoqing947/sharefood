@@ -42,4 +42,9 @@ public class TujianSerImpl implements TujianSer {
         }
         return num > 0;
     }
+
+    @Override
+    public List<Tujian> findList(Map<String, Object> searchMap) {
+        return tujianMapper.findList(searchMap);
+    }
 }

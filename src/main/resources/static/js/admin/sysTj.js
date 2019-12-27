@@ -105,13 +105,7 @@ $(document).ready(function () {
                         $('#updateModal').modal('show', 'fit');
                         $('#tjPic').attr("src", data.tujian.pic);
                         $('#title').val(data.tujian.title);
-                        if (data.tujian.tjtype == 0) {
-                            $('#tjtype').val('传统');
-                        } else if (data.tujian.tjtype == 1) {
-                            $('#tjtype').val('儿童');
-                        } else if (data.tujian.tjtype == 2) {
-                            $('#tjtype').val('海鲜');
-                        }
+                        $('#tjtype').val(data.tujian.tjtype);
                         $('#tjdesc').val(data.tujian.tjdesc);
                         $('#id').val(data.tujian.id);
                     }
@@ -130,7 +124,7 @@ $(document).ready(function () {
         var updateValite = $("#updateForm").validate({
             rules: {
                 pic: {
-                    "required": true,
+                    "required": true
                 },
                 title: {
                     "required": true

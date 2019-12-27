@@ -1,0 +1,175 @@
+<link href="/css/zui.css" rel="stylesheet">
+<link href="/css/datetimepicker.min.css" rel="stylesheet">
+<div class="page-breadcrumb">
+    <div class="row align-items-center">
+        <div class="col-5">
+            <h4 class="page-title">用户美食分享界面</h4>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">主页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">个人信息
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="panel">
+                    <div class="panel-heading">
+                        美食查询
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon">美食名称</span>
+                                    <input type="text" id="foodName" name="foodName" placeholder="美食名称"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-success" type="button" id="searchBtn"><i class="fa fa-search"
+                                                                                                aria-hidden="true"></i>搜索
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="datagrid">
+                    <div class="search-box">
+                        <button class="btn btn-success " type="button"
+                                data-toggle="modal" data-target="#addModal" id="addBtn"><i class="fa fa-plus"
+                                                                                           aria-hidden="true"></i>添加美食
+                        </button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-info " type="button" id="updateBtn"><i class="fa fa-edit"></i>修改美食信息
+                        </button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-danger " type="button" id="deleteBtn"><i class="fa fa-trash"></i>删除美食
+                        </button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="btn " type="button" id="checkBtn"><i class="fa fa-info"></i>审核</button>
+                    </div>
+                    <div class="datagrid datagrid-striped" id="listDataGrid" data-ride="datagrid"></div>
+                    <div id="listPager" class="pager" data-ride="pager"></div>
+                </div>
+            </div>
+            <div class="col-md-12" style="height: 80px">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加页面 -->
+<div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width:1000px;-webkit-transform:translateX(-25%);">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">美食分享</h4>
+            </div>
+            <form id="addForm" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="pic" class="col-sm-3 control-label">图片:<font color="red">*</font></label>
+                                <div class="input-group col-sm-9 text-center">
+                                    <img src="/images/users/1.jpg" width="100px" height="100px" id="pic">
+                                    <input class="form-control" id="mspic" name="mspic" type="file" style="opacity:0;width:125px;height:100%;position:absolute;left:122px;top:0px">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="types" class="col-sm-3 control-label">美食类型:<font color="red">*</font></label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="types" name="types">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="msname" class="col-sm-3 control-label">美食名称:<font color="red">*</font></label>
+                                <div class="input-group col-sm-9">
+                                    <input class="form-control" id="msname" name="msname" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="msaddress" class="col-sm-3 control-label">美食地址:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="msaddress" name="msaddress" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="msnumber" class="col-sm-3 control-label">商家联系电话:</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" id="msnumber" name="msnumber" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mstag" class="col-sm-3 control-label">标签:</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="mstag" name="mstag">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="recommendcrowd" class="col-sm-3 control-label">美食推荐人群:<font
+                                        color="red">*</font></label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="recommendcrowd" name="recommendcrowd">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="isdiscount" class="col-sm-3 control-label">是否有优惠:</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="isdiscount" name="isdiscount">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="discountstime" class="col-sm-3 control-label">优惠开始时间:</label>
+                                <div class="input-group col-sm-9">
+                                    <span class="input-group-addon">选择时间：</span>
+                                    <input type="text" class="form-control" placeholder="开始时间" readonly="readonly" id="discountstime" name="discountstime">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="discountetime" class="col-sm-3 control-label">优惠结束时间:</label>
+                                <div class="input-group col-sm-9">
+                                    <span class="input-group-addon">选择时间：</span>
+                                    <input type="text" class="form-control" placeholder="结束时间" readonly="readonly" id="discountetime" name="discountetime">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="content" class="col-sm-3 control-label">美食描述:<font
+                                        color="red">*</font></label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control" id="content" name="content" rows="6"
+                                              cols="60"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="-webkit-transform:translateX(-50%);">
+                    <div class="center-block">
+                        <input type="hidden" name="fb" id="fb"/>
+                        <button type="submit" id="addCgBtn" class="btn btn-primary">保存草稿</button>
+                        <button type="submit" id="addFbBtn" class="btn btn-primary">发布</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/js/messages_zh.js"></script>
+<script type="text/javascript" src="/js/datetimepicker.min.js"></script>
+<script type="text/javascript" src="/js/admin/sharefood.js"></script>

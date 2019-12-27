@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sharefood.mapping.MeiShiMapper">
+  <resultMap id="BaseResultMap" type="com.example.sharefood.domain.MeiShi">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="types" jdbcType="VARCHAR" property="types" />
+    <result column="msName" jdbcType="VARCHAR" property="msname" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="msPic" jdbcType="VARCHAR" property="mspic" />
+    <result column="insertDate" jdbcType="TIMESTAMP" property="insertdate" />
+    <result column="sendUser" jdbcType="VARCHAR" property="senduser" />
+    <result column="msTag" jdbcType="VARCHAR" property="mstag" />
+    <result column="msAddress" jdbcType="VARCHAR" property="msaddress" />
+    <result column="isfb" jdbcType="VARCHAR" property="isfb" />
+    <result column="isDiscount" jdbcType="VARCHAR" property="isdiscount" />
+    <result column="discountSTime" jdbcType="TIMESTAMP" property="discountstime" />
+    <result column="discountETime" jdbcType="TIMESTAMP" property="discountetime" />
+    <result column="msNumber" jdbcType="VARCHAR" property="msnumber" />
+    <result column="recommendCrowd" jdbcType="VARCHAR" property="recommendcrowd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, types, msName, content, msPic, insertDate, sendUser, msTag, msAddress, isfb, 
+    isDiscount, discountSTime, discountETime, msNumber, recommendCrowd
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_ms
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_ms
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.sharefood.domain.MeiShi">
+    insert into t_ms (id, types, msName, 
+      content, msPic, insertDate, 
+      sendUser, msTag, msAddress, 
+      isfb, isDiscount, discountSTime, 
+      discountETime, msNumber, recommendCrowd
+      )
+    values (#{id,jdbcType=INTEGER}, #{types,jdbcType=VARCHAR}, #{msname,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{mspic,jdbcType=VARCHAR}, #{insertdate,jdbcType=TIMESTAMP}, 
+      #{senduser,jdbcType=VARCHAR}, #{mstag,jdbcType=VARCHAR}, #{msaddress,jdbcType=VARCHAR}, 
+      #{isfb,jdbcType=VARCHAR}, #{isdiscount,jdbcType=VARCHAR}, #{discountstime,jdbcType=TIMESTAMP}, 
+      #{discountetime,jdbcType=TIMESTAMP}, #{msnumber,jdbcType=VARCHAR}, #{recommendcrowd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.sharefood.domain.MeiShi">
+    insert into t_ms
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="types != null">
+        types,
+      </if>
+      <if test="msname != null">
+        msName,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="mspic != null">
+        msPic,
+      </if>
+      <if test="insertdate != null">
+        insertDate,
+      </if>
+      <if test="senduser != null">
+        sendUser,
+      </if>
+      <if test="mstag != null">
+        msTag,
+      </if>
+      <if test="msaddress != null">
+        msAddress,
+      </if>
+      <if test="isfb != null">
+        isfb,
+      </if>
+      <if test="isdiscount != null">
+        isDiscount,
+      </if>
+      <if test="discountstime != null">
+        discountSTime,
+      </if>
+      <if test="discountetime != null">
+        discountETime,
+      </if>
+      <if test="msnumber != null">
+        msNumber,
+      </if>
+      <if test="recommendcrowd != null">
+        recommendCrowd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="types != null">
+        #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="msname != null">
+        #{msname,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="mspic != null">
+        #{mspic,jdbcType=VARCHAR},
+      </if>
+      <if test="insertdate != null">
+        #{insertdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="senduser != null">
+        #{senduser,jdbcType=VARCHAR},
+      </if>
+      <if test="mstag != null">
+        #{mstag,jdbcType=VARCHAR},
+      </if>
+      <if test="msaddress != null">
+        #{msaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isfb != null">
+        #{isfb,jdbcType=VARCHAR},
+      </if>
+      <if test="isdiscount != null">
+        #{isdiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="discountstime != null">
+        #{discountstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discountetime != null">
+        #{discountetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msnumber != null">
+        #{msnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendcrowd != null">
+        #{recommendcrowd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.sharefood.domain.MeiShi">
+    update t_ms
+    <set>
+      <if test="types != null">
+        types = #{types,jdbcType=VARCHAR},
+      </if>
+      <if test="msname != null">
+        msName = #{msname,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="mspic != null">
+        msPic = #{mspic,jdbcType=VARCHAR},
+      </if>
+      <if test="insertdate != null">
+        insertDate = #{insertdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="senduser != null">
+        sendUser = #{senduser,jdbcType=VARCHAR},
+      </if>
+      <if test="mstag != null">
+        msTag = #{mstag,jdbcType=VARCHAR},
+      </if>
+      <if test="msaddress != null">
+        msAddress = #{msaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isfb != null">
+        isfb = #{isfb,jdbcType=VARCHAR},
+      </if>
+      <if test="isdiscount != null">
+        isDiscount = #{isdiscount,jdbcType=VARCHAR},
+      </if>
+      <if test="discountstime != null">
+        discountSTime = #{discountstime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discountetime != null">
+        discountETime = #{discountetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msnumber != null">
+        msNumber = #{msnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendcrowd != null">
+        recommendCrowd = #{recommendcrowd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.sharefood.domain.MeiShi">
+    update t_ms
+    set types = #{types,jdbcType=VARCHAR},
+      msName = #{msname,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      msPic = #{mspic,jdbcType=VARCHAR},
+      insertDate = #{insertdate,jdbcType=TIMESTAMP},
+      sendUser = #{senduser,jdbcType=VARCHAR},
+      msTag = #{mstag,jdbcType=VARCHAR},
+      msAddress = #{msaddress,jdbcType=VARCHAR},
+      isfb = #{isfb,jdbcType=VARCHAR},
+      isDiscount = #{isdiscount,jdbcType=VARCHAR},
+      discountSTime = #{discountstime,jdbcType=TIMESTAMP},
+      discountETime = #{discountetime,jdbcType=TIMESTAMP},
+      msNumber = #{msnumber,jdbcType=VARCHAR},
+      recommendCrowd = #{recommendcrowd,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="findCount" parameterType="java.util.Map" resultType="int">
+    select count(*)
+    from t_ms
+    <where>
+      sendUser = #{user}
+      <if test="foodName !=null">
+        and  msName like '%${foodName}%'
+      </if>
+    </where>
+  </select>
+
+  <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select * from t_ms
+    <where>
+      sendUser = #{user}
+      <if test="foodName !=null">
+        and msName like '%${foodName}%'
+      </if>
+    </where>
+    <if test="pageSize != null">
+      <if test="currentPage != null">
+        limit #{indexCount},#{pageSize}
+      </if>
+    </if>
+  </select>
+
+</mapper>

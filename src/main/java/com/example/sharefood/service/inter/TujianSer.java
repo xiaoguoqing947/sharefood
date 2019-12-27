@@ -13,4 +13,6 @@ public interface TujianSer {
     Tujian findTj(String id);
 
     boolean updateTj(Tujian tujian);
+
+    List<Tujian> findList(Map<String, Object> searchMap);
 }

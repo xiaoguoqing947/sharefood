@@ -97,7 +97,6 @@ public class TujianCtrl {
             tujian.setPic("/images/tujian/" + fileName);
             tujian.setId(Integer.parseInt((String) param.get("id")));
             tujian.setTitle((String) param.get("title"));
-            tujian.setTjtype((String) param.get("tjtype"));
             tujian.setTjdesc((String) param.get("tjdesc"));
             if (tujianSer.updateTj(tujian)) {
                 resultMap.put("code", 200);

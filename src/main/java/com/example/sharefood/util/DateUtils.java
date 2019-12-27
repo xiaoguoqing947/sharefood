@@ -20,7 +20,7 @@ public class DateUtils {
     }
 
     public static Date strToDate(String date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Date result = null;
         try {
             result = sdf.parse(date);

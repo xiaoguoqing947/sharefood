@@ -35,9 +35,9 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        registry.addResourceHandler("/images/uploadfile/**").addResourceLocations("file:E:/sharefood/src/main/resources/static/images/uploadfile/");
         registry.addResourceHandler("/images/users/**").addResourceLocations("file:E:/sharefood/src/main/resources/static/images/users/");
         registry.addResourceHandler("/images/tujian/**").addResourceLocations("file:E:/sharefood/src/main/resources/static/images/tujian/");
+        registry.addResourceHandler("/images/meishi/**").addResourceLocations("file:E:/sharefood/src/main/resources/static/images/meishi/");
         /*TODO 项目转移到其他文件夹时 这里的路劲需要更改*/
     }
 

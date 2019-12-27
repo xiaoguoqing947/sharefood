@@ -1,10 +1,13 @@
 package com.example.sharefood.controller;
 
 import com.example.sharefood.domain.Customer;
+import com.example.sharefood.domain.Tujian;
 import com.example.sharefood.domain.dto.customer.CustomerRegistForm;
 import com.example.sharefood.mapping.CustomerMapper;
+import com.example.sharefood.mapping.TujianMapper;
 import com.example.sharefood.service.inter.AdminSer;
 import com.example.sharefood.service.inter.CustomerSer;
+import com.example.sharefood.service.inter.TujianSer;
 import com.example.sharefood.util.Token;
 import com.example.sharefood.util.ValidateMethod;
 import com.sun.org.apache.xpath.internal.operations.Mod;
@@ -26,11 +29,15 @@ import java.util.Map;
 public class LoginCtrl {
     private AdminSer adminSer;
     private CustomerSer customerSer;
+    private TujianSer tujianSer;
+
 
     @Autowired
-    public LoginCtrl(AdminSer adminSer, CustomerSer customerSer) {
+    public LoginCtrl(AdminSer adminSer, CustomerSer customerSer,TujianSer tujianSer) {
         this.adminSer = adminSer;
         this.customerSer = customerSer;
+        this.tujianSer = tujianSer;
+
     }
 
     /*管理员登录*/
@@ -68,6 +75,9 @@ public class LoginCtrl {
     public String loginout(HttpServletRequest rep, Model model) {
         customerSer.destroySession(rep);
         model.addAttribute("statu", "unlogin");
+        Map<String, Object> searchMap = new HashMap<String, Object>();
+        List<Tujian> tujianList = tujianSer.findList(searchMap);
+        model.addAttribute("tujianList",tujianList);
         return "index";
     }
 

@@ -1,118 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.sharefood.mapping.TujianMapper">
-  <resultMap id="BaseResultMap" type="com.example.sharefood.domain.Tujian">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="pic" jdbcType="VARCHAR" property="pic" />
-    <result column="tjType" jdbcType="VARCHAR" property="tjtype" />
-    <result column="tjDesc" jdbcType="VARCHAR" property="tjdesc" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, title, pic, tjType, tjDesc
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_tj
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_tj
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.example.sharefood.domain.Tujian">
-    insert into t_tj (id, title, pic, 
-      tjType, tjDesc)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, 
-      #{tjtype,jdbcType=VARCHAR}, #{tjdesc,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.example.sharefood.domain.Tujian">
-    insert into t_tj
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="title != null">
-        title,
-      </if>
-      <if test="pic != null">
-        pic,
-      </if>
-      <if test="tjtype != null">
-        tjType,
-      </if>
-      <if test="tjdesc != null">
-        tjDesc,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="pic != null">
-        #{pic,jdbcType=VARCHAR},
-      </if>
-      <if test="tjtype != null">
-        #{tjtype,jdbcType=VARCHAR},
-      </if>
-      <if test="tjdesc != null">
-        #{tjdesc,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.sharefood.domain.Tujian">
-    update t_tj
-    <set>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="pic != null">
-        pic = #{pic,jdbcType=VARCHAR},
-      </if>
-      <if test="tjtype != null">
-        tjType = #{tjtype,jdbcType=VARCHAR},
-      </if>
-      <if test="tjdesc != null">
-        tjDesc = #{tjdesc,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.sharefood.domain.Tujian">
-    update t_tj
-    set title = #{title,jdbcType=VARCHAR},
-      pic = #{pic,jdbcType=VARCHAR},
-      tjType = #{tjtype,jdbcType=VARCHAR},
-      tjDesc = #{tjdesc,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+    <resultMap id="BaseResultMap" type="com.example.sharefood.domain.Tujian">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="pic" jdbcType="VARCHAR" property="pic"/>
+        <result column="tjType" jdbcType="VARCHAR" property="tjtype"/>
+        <result column="tjDesc" jdbcType="VARCHAR" property="tjdesc"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, title, pic, tjType, tjDesc
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select a.id, title, pic, key_name as tjType, tjDesc
+        from t_tj a
+                 LEFT JOIN dictionary b on a.tjType = b.key_value
+        where a.id = #{id,jdbcType=INTEGER}
+          and b.dcis_code = 'type'
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from t_tj
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.example.sharefood.domain.Tujian">
+        insert into t_tj (id, title, pic,
+                          tjType, tjDesc)
+        values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR},
+                #{tjtype,jdbcType=VARCHAR}, #{tjdesc,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.example.sharefood.domain.Tujian">
+        insert into t_tj
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="pic != null">
+                pic,
+            </if>
+            <if test="tjtype != null">
+                tjType,
+            </if>
+            <if test="tjdesc != null">
+                tjDesc,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="pic != null">
+                #{pic,jdbcType=VARCHAR},
+            </if>
+            <if test="tjtype != null">
+                #{tjtype,jdbcType=VARCHAR},
+            </if>
+            <if test="tjdesc != null">
+                #{tjdesc,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.sharefood.domain.Tujian">
+        update t_tj
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="pic != null">
+                pic = #{pic,jdbcType=VARCHAR},
+            </if>
+            <if test="tjtype != null">
+                tjType = #{tjtype,jdbcType=VARCHAR},
+            </if>
+            <if test="tjdesc != null">
+                tjDesc = #{tjdesc,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.sharefood.domain.Tujian">
+        update t_tj
+        set title  = #{title,jdbcType=VARCHAR},
+            pic    = #{pic,jdbcType=VARCHAR},
+            tjType = #{tjtype,jdbcType=VARCHAR},
+            tjDesc = #{tjdesc,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 
-  <select id="findCount" parameterType="java.util.Map" resultType="int">
-    select count(*)
-    from t_tj
-    <where>
-      <if test="picName !=null">
-        title like '%${picName}%'
-      </if>
-    </where>
-  </select>
+    <select id="findCount" parameterType="java.util.Map" resultType="int">
+        select count(*)
+        from t_tj
+        <where>
+            <if test="picName !=null">
+                title like '%${picName}%'
+            </if>
+        </where>
+    </select>
 
-  <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
-    select * from t_tj
-    <where>
-      <if test="picName !=null">
-        title like '%${picName}%'
-      </if>
-    </where>
-    <if test="pageSize != null">
-      <if test="currentPage != null">
-        limit #{indexCount},#{pageSize}
-      </if>
-    </if>
-  </select>
+    <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select a.id,title,pic,key_name as tjType,tjDesc from t_tj a LEFT JOIN dictionary b on a.tjType=b.key_value
+        <where>
+            b.dcis_code='type'
+            <if test="picName !=null">
+                and title like '%${picName}%'
+            </if>
+        </where>
+        <if test="pageSize != null">
+            <if test="currentPage != null">
+                limit #{indexCount},#{pageSize}
+            </if>
+        </if>
+    </select>
 
 </mapper>

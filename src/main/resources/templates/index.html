@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/stuck.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/touchTouch.css">
+
     <script src="/js/jquery.js"></script>
     <script src="/js/jquery-migrate-1.1.1.js"></script>
     <script src="/js/script.js"></script>
@@ -17,6 +18,7 @@
     <script src="/js/tmStickUp.js"></script>
     <script src="/js/jquery.ui.totop.js"></script>
     <script src="/js/touchTouch.jquery.js"></script>
+    <script src="/js/index/index.js"></script>
     <script>
         $(document).ready(function () {
             $().UItoTop({easingType: 'easeOutQuart'});
@@ -70,71 +72,31 @@
 </header>
 <section class="content">
     <div class="container">
-        <div class="row">
-            <div class="grid_4">
-                <div class="banner">
-                    <div class="gall_block">
-                        <img src="/images/page1_img1.jpg" alt="">
-                        <div class="bann_capt ">
-                            <div class="maxheight">
-                                <img src="/images/icon1.png" alt="">
-                                <div class="bann_title">传统美食 推荐</div>
-                                <a href="#">更多</a>
+        <div class="row" >
+            <div th:each="tjList : ${tujianList}">
+                <div class="grid_4">
+                    <div class="banner">
+                        <div class="gall_block">
+                            <img th:src="${tjList.pic}" alt="">
+                            <div class="bann_capt ">
+                                <div class="maxheight">
+                                    <img src="/images/icon1.png" alt="">
+                                    <div class="bann_title"><span th:text="${tjList.title}"></span> 推荐</div>
+                                    <a href="#">更多</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="grid_4">
-                <div class="banner">
-                    <div class="gall_block">
-                        <div class="bann_capt  bn__1">
-                            <div class="maxheight">
-                                <img src="/images/icon2.png" alt="">
-                                <div class="bann_title">儿童美食 推荐</div>
-                                <a href="#">更多</a>
-                            </div>
-                        </div>
-                        <img src="/images/page1_img2.jpg" alt="">
+            <div th:each="tjList : ${tujianList}">
+                <div class="grid_4">
+                    <div class="block1">
+                        <div class="count"><span th:text="${tjList.id}"></span></div>
+                        <span th:text="${tjList.tjdesc}"></span>
+                        <br>
+                        <a href="#" class="btn">更多</a>
                     </div>
-                </div>
-            </div>
-            <div class="grid_4">
-                <div class="banner ">
-                    <div class="gall_block">
-                        <img src="/images/page1_img3.jpg" alt="">
-                        <div class="bann_capt  bn__2">
-                            <div class="maxheight">
-                                <img src="/images/icon3.png" alt="">
-                                <div class="bann_title">海鲜美食 推荐</div>
-                                <a href="#">更多</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid_4">
-                <div class="block1">
-                    <div class="count">1</div>
-                    传统美食描述信息
-                    <br>
-                    <a href="#" class="btn">更多</a>
-                </div>
-            </div>
-            <div class="grid_4">
-                <div class="block1">
-                    <div class="count">2</div>
-                    儿童美食描述信息
-                    <br>
-                    <a href="#" class="btn">更多</a>
-                </div>
-            </div>
-            <div class="grid_4">
-                <div class="block1">
-                    <div class="count">3</div>
-                    优惠活动美食描述信息
-                    <br>
-                    <a href="#" class="btn">更多</a>
                 </div>
             </div>
             <div class="grid_12">
