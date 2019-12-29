@@ -126,8 +126,12 @@ public class MeiShiCtrl {
             meiShi.setMsnumber((String) param.get("msnumber"));
             meiShi.setContent((String) param.get("content"));
             /*时间*/
-            meiShi.setDiscountstime(DateUtils.strToDate((String) param.get("discountstime")));
-            meiShi.setDiscountetime(DateUtils.strToDate((String) param.get("discountetime")));
+            if(!("".equals(param.get("discountstime")))){
+                meiShi.setDiscountstime(DateUtils.strToDate((String) param.get("discountstime")));
+            }
+            if(!("".equals(param.get("discountetime")))){
+                meiShi.setDiscountetime(DateUtils.strToDate((String) param.get("discountetime")));
+            }
             meiShi.setInsertdate(new Date());
 
             /*查询是谁上传的*/

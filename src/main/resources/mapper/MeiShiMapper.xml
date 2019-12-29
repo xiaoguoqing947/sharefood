@@ -215,7 +215,9 @@
     select count(*)
     from t_ms
     <where>
-      sendUser = #{user}
+      <if test="user !=null">
+        sendUser = #{user}
+      </if>
       <if test="foodName !=null">
         and  msName like '%${foodName}%'
       </if>
@@ -225,7 +227,15 @@
   <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select * from t_ms
     <where>
-      sendUser = #{user}
+      <if test="type !=null">
+        types  = #{type}
+      </if>
+      <if test="fb !=null">
+        and isfb  = #{fb}
+      </if>
+      <if test="user !=null">
+        and sendUser = #{user}
+      </if>
       <if test="foodName !=null">
         and msName like '%${foodName}%'
       </if>

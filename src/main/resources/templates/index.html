@@ -18,7 +18,6 @@
     <script src="/js/tmStickUp.js"></script>
     <script src="/js/jquery.ui.totop.js"></script>
     <script src="/js/touchTouch.jquery.js"></script>
-    <script src="/js/index/index.js"></script>
     <script>
         $(document).ready(function () {
             $().UItoTop({easingType: 'easeOutQuart'});
@@ -82,7 +81,7 @@
                                 <div class="maxheight">
                                     <img src="/images/icon1.png" alt="">
                                     <div class="bann_title"><span th:text="${tjList.title}"></span> 推荐</div>
-                                    <a href="#">更多</a>
+                                    <a th:href="'/food?type='+(${tjList.id}-1)">更多</a>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +94,7 @@
                         <div class="count"><span th:text="${tjList.id}"></span></div>
                         <span th:text="${tjList.tjdesc}"></span>
                         <br>
-                        <a href="#" class="btn">更多</a>
+                        <a th:href="'/food?type='+(${tjList.id}-1)" class="btn">更多</a>
                     </div>
                 </div>
             </div>

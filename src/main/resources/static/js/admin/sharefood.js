@@ -18,6 +18,26 @@ $("#discountetime").datetimepicker(
         forceParse: 0,
         format: "yyyy-mm-dd HH:mm"
     });
+$("#upddiscountstime").datetimepicker(
+    {
+        language: "zh-CN",
+        weekStart: 1,
+        autoclose: 1,
+        startView: 1,
+        minView: 1,
+        forceParse: 0,
+        format: "yyyy-mm-dd HH:mm"
+    });
+$("#upddiscountetime").datetimepicker(
+    {
+        language: "zh-CN",
+        weekStart: 1,
+        autoclose: 1,
+        startView: 1,
+        minView: 1,
+        forceParse: 0,
+        format: "yyyy-mm-dd HH:mm"
+    });
 $(document).ready(function () {
     var currentPage = 1;
     var pageSize = 10;

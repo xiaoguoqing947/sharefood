@@ -204,18 +204,13 @@ $(document).ready(function () {
                 headers: {'token': token},
                 data: param,
                 success: function (result) {
+                    // console.log(result.tujian);
                     if (result.success == '1') {
                         $('#detailModal').modal('show', 'fit');
                         $('#detailPic').attr('src', result.tujian.pic);
                         $('#detailTitle').html(result.tujian.title);
                         $('#detailTjdesc').html(result.tujian.tjdesc);
-                        if (result.tujian.tjtype == 0) {
-                            $('#detailTjtype').html('传统');
-                        } else if (result.tujian.tjtype == 1) {
-                            $('#detailTjtype').html('儿童');
-                        } else if (result.tujian.tjtype == 2) {
-                            $('#detailTjtype').html('海鲜');
-                        }
+                        $('#detailTjtype').html(result.tujian.tjtype);
                     }
                 },
                 error: function (e) {

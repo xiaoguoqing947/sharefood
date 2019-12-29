@@ -1,7 +1,9 @@
 package com.example.sharefood.controller;
 
+import com.example.sharefood.domain.MeiShi;
 import com.example.sharefood.domain.Tujian;
 import com.example.sharefood.mapping.TujianMapper;
+import com.example.sharefood.service.inter.MeiShiSer;
 import com.example.sharefood.service.inter.TujianSer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ public class IndexCtrl {
 
     @Autowired
     private TujianSer tujianSer;
+    @Autowired
+    private MeiShiSer meiShiSer;
 
     @GetMapping("/")
     public String index(@RequestParam(value = "isAdmin", required = false) String statu, Model model) {
@@ -36,7 +40,7 @@ public class IndexCtrl {
     }
 
     @GetMapping("/food")
-    public String index1(@RequestParam(value = "isAdmin", required = false) String statu, Model model) {
+    public String index1(@RequestParam(value = "isAdmin", required = false) String statu,@RequestParam(value = "type", required = false) String type, Model model) {
         if (statu == null || "unlogin".equals(statu)) {
             model.addAttribute("statu", "unlogin");
         } else if (statu.equals("yes") || statu.equals("admin")) {
@@ -44,6 +48,11 @@ public class IndexCtrl {
         } else if (statu.equals("no") || statu.equals("user")) {
             model.addAttribute("statu", "user");
         }
+        Map<String, Object> searchMap = new HashMap<String, Object>();
+        searchMap.put("type",type);
+        searchMap.put("fb","1");
+        List<MeiShi>  meiShiList=meiShiSer.listMeiShi(searchMap);
+        model.addAttribute("meiShiList",meiShiList);
         return "index-1";
     }
 
