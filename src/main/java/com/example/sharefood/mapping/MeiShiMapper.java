@@ -21,4 +21,6 @@ public interface MeiShiMapper {
     int findCount(Map<String, Object> searchMap);
 
     List<MeiShi> findList(Map<String, Object> searchMap);
+
+    List<MeiShi> findCurrentMs();
 }

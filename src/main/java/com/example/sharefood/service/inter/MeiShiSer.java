@@ -17,4 +17,6 @@ public interface MeiShiSer {
     boolean updateMs(MeiShi meiShi);
 
     boolean deleteMs(String id);
+
+    List<MeiShi> findCurrentMs();
 }

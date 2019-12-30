@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface TagSer {
     List<Tag> findList();
+
+    String findTagById(int parseInt);
 }

@@ -1,6 +1,7 @@
 package com.example.sharefood.mapping;
 
 import com.example.sharefood.domain.Tag;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface TagMapper {
     int updateByPrimaryKey(Tag record);
 
     List<Tag> findList();
+
+    String findTagNameById(@Param("id") int parseInt);
 }

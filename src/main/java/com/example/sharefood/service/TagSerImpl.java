@@ -20,4 +20,9 @@ public class TagSerImpl implements TagSer {
     public List<Tag> findList() {
         return tagMapper.findList();
     }
+
+    @Override
+    public String findTagById(int parseInt) {
+        return tagMapper.findTagNameById(parseInt);
+    }
 }

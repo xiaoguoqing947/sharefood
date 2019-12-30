@@ -227,8 +227,11 @@
   <select id="findList" parameterType="java.util.Map" resultMap="BaseResultMap">
     select * from t_ms
     <where>
+      <if test="tag !=null">
+        msTag  = #{tag}
+      </if>
       <if test="type !=null">
-        types  = #{type}
+        and types  = #{type}
       </if>
       <if test="fb !=null">
         and isfb  = #{fb}
@@ -247,4 +250,7 @@
     </if>
   </select>
 
+  <select id="findCurrentMs" resultMap="BaseResultMap">
+    SELECT * from t_ms  GROUP BY insertDate DESC limit 0,3
+  </select>
 </mapper>

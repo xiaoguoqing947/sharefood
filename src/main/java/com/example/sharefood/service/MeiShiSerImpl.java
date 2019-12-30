@@ -64,4 +64,9 @@ public class MeiShiSerImpl implements MeiShiSer {
         }
         return num > 0;
     }
+
+    @Override
+    public List<MeiShi> findCurrentMs() {
+        return meiShiMapper.findCurrentMs();
+    }
 }

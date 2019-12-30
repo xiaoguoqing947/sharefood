@@ -1,6 +1,7 @@
 package com.example.sharefood.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -15,6 +16,8 @@ public class MeiShi {
 
     private String mspic;
 
+    @DateTimeFormat(pattern = "yyyy-mm-dd HH:mm")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-mm-dd HH:mm")
     private Date insertdate;
 
     private String senduser;
@@ -27,9 +30,11 @@ public class MeiShi {
 
     private String isdiscount;
 
+    @DateTimeFormat(pattern = "yyyy-mm-dd HH:mm")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-mm-dd HH:mm")
     private Date discountstime;
 
+    @DateTimeFormat(pattern = "yyyy-mm-dd HH:mm")
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-mm-dd HH:mm")
     private Date discountetime;
 

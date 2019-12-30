@@ -42,7 +42,6 @@
                             <ul class="sf-menu">
                                 <li ><a th:href="'/?isAdmin='+${statu}">主页面</a></li>
                                 <li><a th:href="'/food?isAdmin='+${statu}">美食</a></li>
-                                <li><a th:href="'/detailfood?isAdmin='+${statu}">美食详情界面</a></li>
                                 <li><a th:href="'/foodblog?isAdmin='+${statu}">博客</a></li>
                                 <li th:switch="${statu}">
                                     <span th:case="unlogin">用户名</span>
@@ -76,7 +75,7 @@
                 <div class="grid_4">
                     <div class="banner">
                         <div class="gall_block">
-                            <img th:src="${tjList.pic}" alt="">
+                            <img th:src="${tjList.pic}" width="368px" height="303px" alt="">
                             <div class="bann_capt ">
                                 <div class="maxheight">
                                     <img src="/images/icon1.png" alt="">
@@ -118,45 +117,15 @@
                 </div>
             </div>
             <div class="grid_12">
-                <h2>今日美食推荐</h2>
+                <h2>今日美食推荐<span style="color: red">(NEW)</span></h2>
             </div>
             <div class="gallery">
-                <div class="grid_4"><a href="/images/big1.jpg" class="gall_item"><img
-                        src="/images/page1_img4.jpg" alt=""></a><a href="#" class="link1">+</a>
+                <div th:each="msList : ${meiShiList}">
+                <div class="grid_4"><a th:href="${msList.mspic}" class="gall_item"><img
+                        th:src="${msList.mspic}" width="370px" height="229px" alt=""></a><a th:href="'/detailfood?detail='+${msList.id}" class="link1">+</a>
                     <div class="clear"></div>
                 </div>
-                <div class="grid_4"><a href="/images/big2.jpg" class="gall_item"><img
-                        src="/images/page1_img5.jpg" alt=""></a><a href="#" class="link1">+</a>
-                    <div class="clear"></div>
-                </div>
-                <div class="grid_4"><a href="/images/big3.jpg" class="gall_item"><img
-                        src="/images/page1_img6.jpg" alt=""></a><a href="#" class="link1">+</a>
-                    <div class="clear"></div>
-                </div>
-            </div>
-            <div class="grid_4">
-                <h2>优惠时间</h2>
-                <ul class="shed">
-                    <li><span>早上:</span> 8AM - 11AM</li>
-                    <li><span>中午:</span> 12AM - 12PM</li>
-                    <li><span>晚上:</span> 8AM - 11AM</li>
-                </ul>
-            </div>
-            <div class="grid_4">
-                <h2>优惠时间</h2>
-                <ul class="shed">
-                    <li><span>早上:</span> 8AM - 11AM</li>
-                    <li><span>中午:</span> 12AM - 12PM</li>
-                    <li><span>晚上:</span> 8AM - 11AM</li>
-                </ul>
-            </div>
-            <div class="grid_4">
-                <h2>优惠时间</h2>
-                <ul class="shed">
-                    <li><span>早上:</span> 8AM - 11AM</li>
-                    <li><span>中午:</span> 12AM - 12PM</li>
-                    <li><span>晚上:</span> 8AM - 11AM</li>
-                </ul>
+                </div></div>
             </div>
         </div>
     </div>

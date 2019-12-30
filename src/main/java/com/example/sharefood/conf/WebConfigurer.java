@@ -25,7 +25,7 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor).addPathPatterns("/api/**");
-        registry.addInterceptor(indexInterceptor).addPathPatterns("/","/detailfood");
+        registry.addInterceptor(indexInterceptor).addPathPatterns("/");
         registry.addInterceptor(indexFoodInterceptor).addPathPatterns("/food");
         registry.addInterceptor(indexBlogInterceptor).addPathPatterns("/foodblog");
         //关闭了拦截器，项目完成后开启
@@ -43,9 +43,6 @@ public class WebConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/food").setViewName("index-1");
-        registry.addViewController("/detailfood").setViewName("index-2");
-        registry.addViewController("/foodblog").setViewName("index-3");
         registry.addViewController("/login").setViewName("module/login");
    }
 

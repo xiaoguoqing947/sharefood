@@ -62,4 +62,10 @@
         from t_tag
         where 1 = 1
     </select>
+
+    <select id="findTagNameById" resultType="String">
+        select tag
+        from t_tag
+        where id = #{id}
+    </select>
 </mapper>

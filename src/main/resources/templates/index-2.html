@@ -44,7 +44,6 @@
                             <ul class="sf-menu">
                                 <li ><a th:href="'/?isAdmin='+${statu}">主页面</a></li>
                                 <li><a th:href="'/food?isAdmin='+${statu}">美食</a></li>
-                                <li><a th:href="'/detailfood?isAdmin='+${statu}">美食详情界面</a></li>
                                 <li><a th:href="'/foodblog?isAdmin='+${statu}">博客</a></li>
                                 <li th:switch="${statu}">
                                     <span th:case="unlogin">用户名</span>
@@ -75,21 +74,16 @@
     <div class="container">
         <div class="row">
             <div class="grid_8">
-                <h2>食物名称</h2>
-                <img src="/images/page3_img1.jpg" alt="" class="img_inner fleft inn__1">
+                <h2 th:text="${meiShi.msname}">食物名称</h2>
+                <img th:src="${meiShi.mspic}" width="370px" height="267px" alt="" class="img_inner fleft inn__1" >
                 <div class="extra_wrapper">
-                    <div class="text1 tx__1"><a href="#">食物别名 </a></div>
-                    <p>描述信息frist </p>
-                    <p>描述信息second </p>
-                    描述信息thrid
+                    <div class="text1 tx__1"><a href="#">美食信息 </a></div>
+                    <p th:text="${meiShi.content}"></p>
                 </div>
                 <div class="clear"></div>
-                <h2>评论信息</h2>
-                <div class="text1 tx__1"><a href="#">Hivamus at magna non nuncerto limonit nelowert sedrolino. Integer
-                    convallis orci vel miеter laoreet, at ornare lorem consequat. Phasellus erat nisl, auctor vel velit
-                    sed.</a></div>
-                <p>Nehoncus. Aliquam nibh antegestas id ictum ado. Praesenterto faucibus maleada faucibusnec laeet metus
-                    id laoreet rolito monert dertolimon.</p>
+                <h2>评论信息</h2><div class="fa fa-thumbs-up"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="fa fa-thumbs-down"></div>
+                <div class="text1 tx__1"><a href="#"></a></div>
+                <p></p>
                 <p>Nullam consectetur orci sed nulla facilisisequat. Curabitur vel lorem sit amet nulla perermentum.
                     Aliquam nibh ante, egestas id dictum a, commodo luctus libero. </p>
                 Praesent faucibus malesuada faucibus. Donec laoreet metus id laoreet malesuada. Lorem ipsum dolor sit
@@ -98,65 +92,31 @@
                 <a href="#" class="btn">更多</a>
             </div>
             <div class="grid_4">
-                <h2>优惠时间（<font color="#d3d3d3">已过期</font>）</h2>
+                <h2>是否优惠（<font color="#d3d3d3"><span th:text="${meiShi.isdiscount}"></span></font>）</h2>
                 <div class="form_title color1">
-                    每周六晚上6：00 - 12：:00 <br>联系电话：1 101 889 9898
+                    <span th:text="${#dates.format(meiShi.discountstime,'yyyy年mm月dd HH:mm')}"></span> - <span th:text="${#dates.format(meiShi.discountetime,'yyyy年mm月dd HH:mm')}"></span>
+                    <br>联系电话：<span th:text="${msnumber}"></span>
                 </div>
                 <form id="bookingForm">
                     <div class="tmInput">
-                        <input name="Name" placeHolder="名称" type="text"
-                               data-constraints='@NotEmpty @Required @AlphaSpecial'>
+                        食物名称：<span th:text="${meiShi.msname}"></span>
                     </div>
                     <div class="tmInput">
-                        <input name="Email" placeHolder="邮箱" type="text"
-                               data-constraints="@NotEmpty @Required @Email">
+                        美食地址：<span th:text="${meiShi.msaddress}"></span>
                     </div>
                     <div class="clear f_sep1"></div>
-                    <strong class="dt">开始时间</strong>
-                    <label class="tmDatepicker">
-                        <input type="text" name="Date" placeHolder='10/05/2014'
-                               data-constraints="@NotEmpty @Required @Date">
+                    开始时间:  <label  th:text="${#dates.format(meiShi.discountstime,'yyyy年mm月dd HH:mm')}">
                     </label>
                     <div class="clear"></div>
-                    <strong class="dt">结束时间</strong>
-                    <label class="tmDatepicker">
-                        <input type="text" name="Date" placeHolder='20/05/2014'
-                               data-constraints="@NotEmpty @Required @Date">
+                    结束时间:  <label th:text="${#dates.format(meiShi.discountetime,'yyyy年mm月dd HH:mm')}">
                     </label>
                     <div class="clear"></div>
                     <div class="fl1 ">
-                        <em>建议就餐人数</em>
-                        <select name="Adults" class="tmSelect auto" data-class="tmSelect tmSelect2" data-constraints="">
-                            <option>1</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        <br>
+                        就餐人群:<span th:text="${meiShi.recommendcrowd}"></span>
                         <div class="clear height1"></div>
-
-
-                    </div>
-                    <div class="fl1">
-                        <em>儿童人数</em>
-                        <select name="Children" class="tmSelect auto" data-class="tmSelect tmSelect2"
-                                data-constraints="">
-                            <option>0</option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                        </select>
-
                     </div>
                     <div class="clear"></div>
-
-                    <div class="tmTextarea">
-                        <textarea name="Message" placeHolder="描述消息"
-                                  data-constraints='@NotEmpty @Required @Length(min=20,max=999999)'></textarea>
-                    </div>
-                    <div class="ta__right">
-                        <a href="#" class="btn" data-type="reset">clear</a>
-                        <a href="#" class="btn" data-type="submit">send</a>
-                    </div>
                 </form>
             </div>
         </div>
