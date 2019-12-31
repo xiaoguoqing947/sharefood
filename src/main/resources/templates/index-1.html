@@ -17,6 +17,7 @@
     <script src="/js/tmStickUp.js"></script>
     <script src="/js/jquery.ui.totop.js"></script>
     <script src="/js/touchTouch.jquery.js"></script>
+    <script src="/js/index/like.js"></script>
     <script>
         $(document).ready(function () {
             $().UItoTop({easingType: 'easeOutQuart'});
@@ -111,34 +112,6 @@
     </div>
 </section>
 <div th:replace="/module/footer :: footer"></div>
-
-<script>
-    function addViewCount(foodId) {
-        if(!window.localStorage){
-            alert("该浏览器不支持localstorage");
-        }else{
-            // alert(foodId)
-            var storage=window.localStorage;
-            var id=foodId;
-            if(storage.getItem(id) == null){
-                // alert('不存在')
-                var foodId = {
-                    view: 1,
-                    like: 0,
-                    unlike: 0
-                };
-                var d = JSON.stringify(foodId);
-            }else{
-                // alert('存在')
-                var json=storage.getItem(id);
-                var jsonObj=JSON.parse(json);
-                jsonObj.view+=1;
-                var d = JSON.stringify(jsonObj);
-            }
-            storage.setItem(id,d);
-        }
-    }
-</script>
 </body>
 </html>
 </html>

@@ -37,7 +37,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="t_ms" domainObjectName="MeiShi" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="t_like" domainObjectName="LikeTable" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
 
     </context>

@@ -77,19 +77,19 @@
                 <h2 th:text="${meiShi.msname}">食物名称</h2>
                 <img th:src="${meiShi.mspic}" width="370px" height="267px" alt="" class="img_inner fleft inn__1" >
                 <div class="extra_wrapper">
-                    <div class="text1 tx__1"><a href="#">美食信息 </a></div>
+                    <div class="text1 tx__1">美食信息 </div>
                     <p th:text="${meiShi.content}"></p>
                 </div>
                 <div class="clear"></div>
-                <h2>评论信息</h2><div class="fa fa-thumbs-up"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="fa fa-thumbs-down"></div>
+                <h2>评论信息</h2>
+                <!--TODO 只有登录的用户才可以点赞-->
+                <div class="container" style="width: 125px;margin-left: 600px">
+                    <a href="#">点赞<div class="fa fa-thumbs-up"></div></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#">不喜欢<div class="fa fa-thumbs-down"></div></a>
+                </div>
                 <div class="text1 tx__1"><a href="#"></a></div>
-                <p></p>
-                <p>Nullam consectetur orci sed nulla facilisisequat. Curabitur vel lorem sit amet nulla perermentum.
-                    Aliquam nibh ante, egestas id dictum a, commodo luctus libero. </p>
-                Praesent faucibus malesuada faucibus. Donec laoreet metus id laoreet malesuada. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit. Nullam consectetur orci sed nulla facilisis consequat. Curabitur vel
-                lorem sit amet nulla ullamcorper fermentum. In vitae varius augue, eu consectetur ligula. <br>
-                <a href="#" class="btn">更多</a>
+                <br>
+                <a href="#" class="btn">查看评论信息</a>
             </div>
             <div class="grid_4">
                 <h2>是否优惠（<font color="#d3d3d3"><span th:text="${meiShi.isdiscount}"></span></font>）</h2>
@@ -117,14 +117,12 @@
                         <div class="clear height1"></div>
                     </div>
                     <div class="clear"></div>
+                    <span class="timeShow"></span>
                 </form>
             </div>
         </div>
     </div>
 </section>
-<!--==============================
-              footer
-=================================-->
 <div th:replace="/module/footer :: footer"></div>
 <script>
     $(function () {

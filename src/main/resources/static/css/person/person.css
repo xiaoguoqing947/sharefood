@@ -1,0 +1,12 @@
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+.input-group .form-control {
+     position: relative;
+     z-index: 2;
+     float: left;
+     width: 100%;
+     margin-bottom: 0;
+ }

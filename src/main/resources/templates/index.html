@@ -18,6 +18,7 @@
     <script src="/js/tmStickUp.js"></script>
     <script src="/js/jquery.ui.totop.js"></script>
     <script src="/js/touchTouch.jquery.js"></script>
+    <script src="/js/index/like.js"></script>
     <script>
         $(document).ready(function () {
             $().UItoTop({easingType: 'easeOutQuart'});
@@ -122,7 +123,7 @@
             <div class="gallery">
                 <div th:each="msList : ${meiShiList}">
                 <div class="grid_4"><a th:href="${msList.mspic}" class="gall_item"><img
-                        th:src="${msList.mspic}" width="370px" height="229px" alt=""></a><a th:href="'/detailfood?detail='+${msList.id}" class="link1">+</a>
+                        th:src="${msList.mspic}" width="370px" height="229px" alt=""></a><a th:onclick="'addViewCount('+${msList.id}+')'" th:href="'/detailfood?detail='+${msList.id}" class="link1">+</a>
                     <div class="clear"></div>
                 </div>
                 </div></div>

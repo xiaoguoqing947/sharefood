@@ -15,7 +15,7 @@
     <script src="/js/jquery.easing.1.3.js"></script>
     <script src="/js/tmStickUp.js"></script>
     <script src="/js/jquery.ui.totop.js"></script>
-
+    <script src="/js/index/like.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -92,7 +92,7 @@
                                 <td><a href="#">
                                     <div class="fa fa-user"></div>
                                     <span th:text="${msList.senduser}"></span></a></td>
-                                <td><a th:href="'/detailfood?detail='+${msList.id}"><span class="fa fa-link"></span>
+                                <td><a th:href="'/detailfood?detail='+${msList.id}" th:onclick="'addViewCount('+${msList.id}+')'"><span class="fa fa-link"></span>
                                     详情链接</a></td>
                             </tr>
                             <tr>
@@ -111,17 +111,19 @@
                                     暂无评论
                                 </td>
                                 <td colspan="2">
-                                    <div class="fa fa-eye"></div>
-                                    182
-                                    <div class="fa fa-thumbs-up"></div>
-                                    0
-                                    <div class="fa fa-thumbs-down"></div>
-                                    0
+                                    <div th:each="likeList:${likeTableList}">
+                                        <div th:if="${likeList.msid} eq ${msList.id}">
+                                            <div class="fa fa-eye" th:text="${likeList.isview}"></div>
+                                            <div class="fa fa-thumbs-up" th:text="${likeList.islike}"></div>
+                                            <div class="fa fa-thumbs-down" th:text="${likeList.unlike}"></div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-                        <a th:href="'/detailfood?detail='+${msList.id}" class="btn">更多</a>
+                        <a th:onclick="'addViewCount('+${msList.id}+')'" th:href="'/detailfood?detail='+${msList.id}"
+                           class="btn">更多</a>
                     </div>
                 </div>
             </div>
@@ -135,11 +137,16 @@
                     <div th:switch="${iterStat.index}">
                         <div th:case="0">
                             <div class="block3">
-                                <img th:src="${msList.mspic}" width="50px" height="50px" alt="" class="img_inner noresize fleft">
+                                <img th:src="${msList.mspic}" width="50px" height="50px" alt=""
+                                     class="img_inner noresize fleft">
                                 <div class="extra_wrapper">
                                     <div class="text1 color1">
-                                        <time datetime="2014-01-01"><span th:text="${#dates.format(msList.insertdate,'yyyy年mm月dd HH:mm')}"></span></time>
-                                        <a href="#"><span th:text="${msList.msname}"></span></a>
+                                        <time datetime="2014-01-01"><span
+                                                th:text="${#dates.format(msList.insertdate,'yyyy年mm月dd HH:mm')}"></span>
+                                        </time>
+                                        <a th:onclick="'addViewCount('+${msList.id}+')'"
+                                           th:href="'/detailfood?detail='+${msList.id}"><span
+                                                th:text="${msList.msname}"></span></a>
                                     </div>
                                     <span th:text="${msList.content}"></span><a
                                         href="#" class="color1">[...]</a>
@@ -148,11 +155,16 @@
                         </div>
                         <div th:case="1">
                             <div class="block3">
-                                <img th:src="${msList.mspic}" width="50px" height="50px" alt="" class="img_inner noresize fleft">
+                                <img th:src="${msList.mspic}" width="50px" height="50px" alt=""
+                                     class="img_inner noresize fleft">
                                 <div class="extra_wrapper">
                                     <div class="text1 color1">
-                                        <time datetime="2014-01-01"><span th:text="${#dates.format(msList.insertdate,'yyyy年mm月dd HH:mm')}"></span></time>
-                                        <a href="#"><span th:text="${msList.msname}"></span> </a>
+                                        <time datetime="2014-01-01"><span
+                                                th:text="${#dates.format(msList.insertdate,'yyyy年mm月dd HH:mm')}"></span>
+                                        </time>
+                                        <a th:onclick="'addViewCount('+${msList.id}+')'"
+                                           th:href="'/detailfood?detail='+${msList.id}"><span
+                                                th:text="${msList.msname}"></span> </a>
                                     </div>
                                     <span th:text="${msList.content}"></span> <a
                                         href="#" class="color1">[...]</a>
@@ -161,11 +173,16 @@
                         </div>
                         <div th:case="2">
                             <div class="block3">
-                                <img th:src="${msList.mspic}" width="50px" height="50px" alt="" class="img_inner noresize fleft">
+                                <img th:src="${msList.mspic}" width="50px" height="50px" alt=""
+                                     class="img_inner noresize fleft">
                                 <div class="extra_wrapper">
                                     <div class="text1 color1">
-                                        <time datetime="2014-01-01"><span th:text="${#dates.format(msList.insertdate,'yyyy年mm月dd HH:mm')}"></span></time>
-                                        <a href="#"><span th:text="${msList.msname}"></span> </a>
+                                        <time datetime="2014-01-01"><span
+                                                th:text="${#dates.format(msList.insertdate,'yyyy年mm月dd HH:mm')}"></span>
+                                        </time>
+                                        <a th:onclick="'addViewCount('+${msList.id}+')'"
+                                           th:href="'/detailfood?detail='+${msList.id}"><span
+                                                th:text="${msList.msname}"></span> </a>
                                     </div>
                                     <span th:text="${msList.content}"></span> <a
                                         href="#" class="color1">[...]</a>
@@ -179,9 +196,6 @@
         </div>
     </div>
 </section>
-<!--==============================
-              footer
-=================================-->
 <div th:replace="/module/footer :: footer"></div>
 </body>
 </html>

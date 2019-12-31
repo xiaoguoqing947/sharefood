@@ -1,19 +1,13 @@
 package com.example.sharefood.controller;
 
-import com.example.sharefood.domain.Customer;
-import com.example.sharefood.domain.MeiShi;
-import com.example.sharefood.domain.Tag;
-import com.example.sharefood.domain.Tujian;
-import com.example.sharefood.mapping.TujianMapper;
+import com.example.sharefood.domain.*;
 import com.example.sharefood.service.inter.*;
-import com.example.sharefood.util.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,14 +18,14 @@ public class IndexCtrl {
     private MeiShiSer meiShiSer;
     private DicsSer dicsSer;
     private TagSer tagSer;
-    private CustomerSer customerSer;
+    private LikeTableSer likeTableSer;
     @Autowired
-    public IndexCtrl(TujianSer tujianSer, MeiShiSer meiShiSer, DicsSer dicsSer, TagSer tagSer, CustomerSer customerSer) {
+    public IndexCtrl(TujianSer tujianSer, MeiShiSer meiShiSer, DicsSer dicsSer, TagSer tagSer, LikeTableSer likeTableSer) {
         this.tujianSer = tujianSer;
         this.meiShiSer = meiShiSer;
         this.dicsSer = dicsSer;
         this.tagSer = tagSer;
-        this.customerSer = customerSer;
+        this.likeTableSer = likeTableSer;
     }
 
     @GetMapping("/")
@@ -98,6 +92,7 @@ public class IndexCtrl {
         }
         Map<String, Object> searchMap = new HashMap<String, Object>();
         searchMap.put("fb","1");
+        List<LikeTable> likeTableList=likeTableSer.findList();
         List<Tag> tagList=tagSer.findList();
         List<MeiShi>  meiShiList=meiShiSer.listMeiShi(searchMap);
         for (int i = 0; i < meiShiList.size(); i++) {
@@ -106,6 +101,7 @@ public class IndexCtrl {
             meiShiList.get(i).setMstag(tagSer.findTagById(Integer.parseInt(meiShiList.get(i).getMstag())));
         }
         model.addAttribute("tagList",tagList);
+        model.addAttribute("likeTableList",likeTableList);
         model.addAttribute("meiShiList",meiShiList);
         return "index-3";
     }
