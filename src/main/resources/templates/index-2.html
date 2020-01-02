@@ -94,15 +94,33 @@
                 <div class="wrapper">
                     <!--已点赞 <div class="fa fa-thumbs-up"></div>   已收藏 <div class="fa fa-star"></div>-->
                     <div id="zan">
-                        <div class="button _1" th:onclick="'addLikeCount('+${meiShi.id}+')'"><span><div
+                        <div class="button _1" th:if="${zan} == null" th:onclick="'addLikeCount('+${meiShi.id}+')'"><span><div
                                 class="fa fa-thumbs-o-up"></div>
                             赞</span>
                             <div class="back"></div>
                         </div>
+                        <div class="button _1" th:if="${zan} == 'no'" th:onclick="'addLikeCount('+${meiShi.id}+')'"><span><div
+                                class="fa fa-thumbs-o-up"></div>
+                            赞</span>
+                            <div class="back"></div>
+                        </div>
+                        <div class="button _1" th:if="${zan} == 'yes'" th:onclick="'deleteLikeCount('+${meiShi.id}+')'"><span><div
+                                class="fa fa-thumbs-up"></div>
+                            取消点赞</span>
+                            <div class="back"></div>
+                        </div>
                     </div>
                     <div id="collect">
-                        <div class="button _2" th:onclick="'addCollectCount('+${meiShi.id}+')'"><span><div
+                        <div class="button _2" th:if="${collect} == null" th:onclick="'addCollectCount('+${meiShi.id}+')'"><span><div
                                 class="fa fa-star-half-empty"></div>收藏</span>
+                            <div class="back"></div>
+                        </div>
+                        <div class="button _2" th:if="${collect} == 'no'" th:onclick="'addCollectCount('+${meiShi.id}+')'"><span><div
+                                class="fa fa-star-half-empty"></div>收藏</span>
+                            <div class="back"></div>
+                        </div>
+                        <div class="button _2" th:if="${collect} == 'yes'" th:onclick="'deleteCollectCount('+${meiShi.id}+')'"><span><div
+                                class="fa fa-star"></div>取消收藏</span>
                             <div class="back"></div>
                         </div>
                     </div>

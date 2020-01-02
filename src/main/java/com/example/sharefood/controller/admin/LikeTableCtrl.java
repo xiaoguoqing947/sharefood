@@ -26,7 +26,6 @@ public class LikeTableCtrl {
     @ResponseBody
     @PostMapping("/liketable/addView")
     public Map<String, Object> addView(@RequestParam("msId") String msId, @RequestParam("view") String view, HttpServletRequest request) {
-        System.out.println(msId + "-" + view);
         Map<String, Object> resultMap = new HashMap<String, Object>();
         LikeTable likeTable = likeTableSer.findLikeTableByMsId(msId);
         if (likeTable == null) {
