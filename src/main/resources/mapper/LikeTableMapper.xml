@@ -4,12 +4,12 @@
   <resultMap id="BaseResultMap" type="com.example.sharefood.domain.LikeTable">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="msId" jdbcType="INTEGER" property="msid" />
-    <result column="isLike" jdbcType="INTEGER" property="islike" />
-    <result column="unlike" jdbcType="INTEGER" property="unlike" />
+    <result column="isLike" jdbcType="VARCHAR" property="islike" />
+    <result column="isStart" jdbcType="VARCHAR" property="isstart" />
     <result column="isView" jdbcType="INTEGER" property="isview" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, msId, isLike, unlike, isView
+    id, msId, isLike, isStart, isView
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.example.sharefood.domain.LikeTable">
     insert into t_like (id, msId, isLike, 
-      unlike, isView)
-    values (#{id,jdbcType=INTEGER}, #{msid,jdbcType=INTEGER}, #{islike,jdbcType=INTEGER}, 
-      #{unlike,jdbcType=INTEGER}, #{isview,jdbcType=INTEGER})
+      isStart, isView)
+    values (#{id,jdbcType=INTEGER}, #{msid,jdbcType=INTEGER}, #{islike,jdbcType=VARCHAR}, 
+      #{isstart,jdbcType=VARCHAR}, #{isview,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.example.sharefood.domain.LikeTable">
     insert into t_like
@@ -39,8 +39,8 @@
       <if test="islike != null">
         isLike,
       </if>
-      <if test="unlike != null">
-        unlike,
+      <if test="isstart != null">
+        isStart,
       </if>
       <if test="isview != null">
         isView,
@@ -54,10 +54,10 @@
         #{msid,jdbcType=INTEGER},
       </if>
       <if test="islike != null">
-        #{islike,jdbcType=INTEGER},
+        #{islike,jdbcType=VARCHAR},
       </if>
-      <if test="unlike != null">
-        #{unlike,jdbcType=INTEGER},
+      <if test="isstart != null">
+        #{isstart,jdbcType=VARCHAR},
       </if>
       <if test="isview != null">
         #{isview,jdbcType=INTEGER},
@@ -71,10 +71,10 @@
         msId = #{msid,jdbcType=INTEGER},
       </if>
       <if test="islike != null">
-        isLike = #{islike,jdbcType=INTEGER},
+        isLike = #{islike,jdbcType=VARCHAR},
       </if>
-      <if test="unlike != null">
-        unlike = #{unlike,jdbcType=INTEGER},
+      <if test="isstart != null">
+        isStart = #{isstart,jdbcType=VARCHAR},
       </if>
       <if test="isview != null">
         isView = #{isview,jdbcType=INTEGER},
@@ -85,11 +85,12 @@
   <update id="updateByPrimaryKey" parameterType="com.example.sharefood.domain.LikeTable">
     update t_like
     set msId = #{msid,jdbcType=INTEGER},
-      isLike = #{islike,jdbcType=INTEGER},
-      unlike = #{unlike,jdbcType=INTEGER},
+      isLike = #{islike,jdbcType=VARCHAR},
+      isStart = #{isstart,jdbcType=VARCHAR},
       isView = #{isview,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 
   <select id="selectByMsId" resultMap="BaseResultMap">
     select * from t_like where msId=#{msId}

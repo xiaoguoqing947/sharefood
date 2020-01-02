@@ -48,7 +48,7 @@
                                 <li th:switch="${statu}">
                                     <span th:case="unlogin">用户名</span>
                                     <span th:case="admin">欢迎您管理员</span>
-                                    <span th:case="user" th:text="'欢迎您'+${session.admin.name}"></span>
+                                    <span th:case="user" th:text="'欢迎您'+(${session.admin.name} == null ? ${session.admin.username} : ${session.admin.name})"></span>
                                     <span th:case="*">用户名</span>    <!--默认的 case 相当于default-->
                                 </li>
                                 <li th:switch="${statu}">
@@ -92,7 +92,7 @@
                                 <td><a href="#">
                                     <div class="fa fa-user"></div>
                                     <span th:text="${msList.senduser}"></span></a></td>
-                                <td><a th:href="'/detailfood?detail='+${msList.id}" th:onclick="'addViewCount('+${msList.id}+')'"><span class="fa fa-link"></span>
+                                <td><a th:href="'/detailfood?isAdmin='+${statu}+'&detail='+${msList.id}" th:onclick="'addViewCount('+${msList.id}+')'"><span class="fa fa-link"></span>
                                     详情链接</a></td>
                             </tr>
                             <tr>
@@ -115,14 +115,14 @@
                                         <div th:if="${likeList.msid} eq ${msList.id}">
                                             <div class="fa fa-eye" th:text="${likeList.isview}"></div>
                                             <div class="fa fa-thumbs-up" th:text="${likeList.islike}"></div>
-                                            <div class="fa fa-thumbs-down" th:text="${likeList.unlike}"></div>
+                                            <div class="fa fa-star-half-empty" th:text="${likeList.isstart}"></div>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
-                        <a th:onclick="'addViewCount('+${msList.id}+')'" th:href="'/detailfood?detail='+${msList.id}"
+                        <a th:onclick="'addViewCount('+${msList.id}+')'" th:href="'/detailfood?isAdmin='+${statu}+'&detail='+${msList.id}"
                            class="btn">更多</a>
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                                                 th:text="${#dates.format(msList.insertdate,'yyyy年mm月dd HH:mm')}"></span>
                                         </time>
                                         <a th:onclick="'addViewCount('+${msList.id}+')'"
-                                           th:href="'/detailfood?detail='+${msList.id}"><span
+                                           th:href="'/detailfood?isAdmin='+${statu}+'&detail='+${msList.id}"><span
                                                 th:text="${msList.msname}"></span></a>
                                     </div>
                                     <span th:text="${msList.content}"></span><a
@@ -163,7 +163,7 @@
                                                 th:text="${#dates.format(msList.insertdate,'yyyy年mm月dd HH:mm')}"></span>
                                         </time>
                                         <a th:onclick="'addViewCount('+${msList.id}+')'"
-                                           th:href="'/detailfood?detail='+${msList.id}"><span
+                                           th:href="'/detailfood?isAdmin='+${statu}+'&detail='+${msList.id}"><span
                                                 th:text="${msList.msname}"></span> </a>
                                     </div>
                                     <span th:text="${msList.content}"></span> <a

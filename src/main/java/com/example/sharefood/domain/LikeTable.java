@@ -5,9 +5,9 @@ public class LikeTable {
 
     private Integer msid;
 
-    private Integer islike;
+    private String islike;
 
-    private Integer unlike;
+    private String isstart;
 
     private Integer isview;
 
@@ -27,20 +27,20 @@ public class LikeTable {
         this.msid = msid;
     }
 
-    public Integer getIslike() {
+    public String getIslike() {
         return islike;
     }
 
-    public void setIslike(Integer islike) {
-        this.islike = islike;
+    public void setIslike(String islike) {
+        this.islike = islike == null ? null : islike.trim();
     }
 
-    public Integer getUnlike() {
-        return unlike;
+    public String getIsstart() {
+        return isstart;
     }
 
-    public void setUnlike(Integer unlike) {
-        this.unlike = unlike;
+    public void setIsstart(String isstart) {
+        this.isstart = isstart == null ? null : isstart.trim();
     }
 
     public Integer getIsview() {

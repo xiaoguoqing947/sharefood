@@ -48,7 +48,7 @@
                                 <li th:switch="${statu}">
                                     <span th:case="unlogin">用户名</span>
                                     <span th:case="admin">欢迎您管理员</span>
-                                    <span th:case="user" th:text="'欢迎您'+${session.admin.name}"></span>
+                                    <span th:case="user" th:text="'欢迎您'+(${session.admin.name} == null ? ${session.admin.username} : ${session.admin.name})"></span>
                                     <span th:case="*">用户名</span>    <!--默认的 case 相当于default-->
                                 </li>
                                 <li th:switch="${statu}">

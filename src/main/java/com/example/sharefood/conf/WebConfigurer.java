@@ -1,9 +1,6 @@
 package com.example.sharefood.conf;
 
-import com.example.sharefood.conf.intercepors.IndexBlogInterceptor;
-import com.example.sharefood.conf.intercepors.IndexFoodInterceptor;
-import com.example.sharefood.conf.intercepors.IndexInterceptor;
-import com.example.sharefood.conf.intercepors.LoginInterceptor;
+import com.example.sharefood.conf.intercepors.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

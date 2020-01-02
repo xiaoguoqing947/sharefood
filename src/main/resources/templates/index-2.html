@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="/css/booking.css">
     <link rel="stylesheet" href="/css/stuck.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/toastr.min.css">
+    <link rel="stylesheet" href="/css/person/person.css">
+
+
     <script src="/js/jquery.js"></script>
     <script src="/js/jquery-migrate-1.1.1.js"></script>
     <script src="/js/script.js"></script>
@@ -17,6 +21,8 @@
     <script src="/js/tmStickUp.js"></script>
     <script src="/js/jquery.ui.totop.js"></script>
     <script src="/js/booking.js"></script>
+    <script src="/js/toastr.min.js"></script>
+    <script src="/js/index/like.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -42,18 +48,21 @@
                     <div class="navigation">
                         <nav>
                             <ul class="sf-menu">
-                                <li ><a th:href="'/?isAdmin='+${statu}">主页面</a></li>
+                                <li><a th:href="'/?isAdmin='+${statu}">主页面</a></li>
                                 <li><a th:href="'/food?isAdmin='+${statu}">美食</a></li>
                                 <li><a th:href="'/foodblog?isAdmin='+${statu}">博客</a></li>
                                 <li th:switch="${statu}">
                                     <span th:case="unlogin">用户名</span>
                                     <span th:case="admin">欢迎您管理员</span>
-                                    <span th:case="user"  th:text="'欢迎您'+${session.admin.name}"></span>
+                                    <span th:case="user"
+                                          th:text="'欢迎您'+(${session.admin.name} == null ? ${session.admin.username} : ${session.admin.name}) "></span>
                                     <span th:case="*">用户名</span>    <!--默认的 case 相当于default-->
                                 </li>
-                                <li th:switch="${statu}" >
+                                <li th:switch="${statu}">
                                     <a th:case="unlogin" href="/login">登录</a>
-                                    <a th:case="*" href="/loginout.action">注销</a>    <!--默认的 case 相当于default-->
+                                    <a th:case="admin" href="/loginout.action">注销</a>
+                                    <a th:case="user" href="/loginout.action">注销</a>
+                                    <a th:case="*" href="/login">登录</a>    <!--默认的 case 相当于default-->
                                 </li>
                                 <li th:switch="${statu}">
                                     <a th:case="unlogin" href="/login">个人中心</a>
@@ -75,17 +84,28 @@
         <div class="row">
             <div class="grid_8">
                 <h2 th:text="${meiShi.msname}">食物名称</h2>
-                <img th:src="${meiShi.mspic}" width="370px" height="267px" alt="" class="img_inner fleft inn__1" >
+                <img th:src="${meiShi.mspic}" width="370px" height="267px" alt="" class="img_inner fleft inn__1">
                 <div class="extra_wrapper">
-                    <div class="text1 tx__1">美食信息 </div>
+                    <div class="text1 tx__1">美食信息</div>
                     <p th:text="${meiShi.content}"></p>
                 </div>
                 <div class="clear"></div>
                 <h2>评论信息</h2>
-                <!--TODO 只有登录的用户才可以点赞-->
-                <div class="container" style="width: 125px;margin-left: 600px">
-                    <a href="#">点赞<div class="fa fa-thumbs-up"></div></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#">不喜欢<div class="fa fa-thumbs-down"></div></a>
+                <div class="wrapper">
+                    <!--已点赞 <div class="fa fa-thumbs-up"></div>   已收藏 <div class="fa fa-star"></div>-->
+                    <div id="zan">
+                        <div class="button _1" th:onclick="'addLikeCount('+${meiShi.id}+')'"><span><div
+                                class="fa fa-thumbs-o-up"></div>
+                            赞</span>
+                            <div class="back"></div>
+                        </div>
+                    </div>
+                    <div id="collect">
+                        <div class="button _2" th:onclick="'addCollectCount('+${meiShi.id}+')'"><span><div
+                                class="fa fa-star-half-empty"></div>收藏</span>
+                            <div class="back"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="text1 tx__1"><a href="#"></a></div>
                 <br>
@@ -94,7 +114,8 @@
             <div class="grid_4">
                 <h2>是否优惠（<font color="#d3d3d3"><span th:text="${meiShi.isdiscount}"></span></font>）</h2>
                 <div class="form_title color1">
-                    <span th:text="${#dates.format(meiShi.discountstime,'yyyy年mm月dd HH:mm')}"></span> - <span th:text="${#dates.format(meiShi.discountetime,'yyyy年mm月dd HH:mm')}"></span>
+                    <span th:text="${#dates.format(meiShi.discountstime,'yyyy年mm月dd HH:mm')}"></span> - <span
+                        th:text="${#dates.format(meiShi.discountetime,'yyyy年mm月dd HH:mm')}"></span>
                     <br>联系电话：<span th:text="${msnumber}"></span>
                 </div>
                 <form id="bookingForm">
@@ -105,11 +126,11 @@
                         美食地址：<span th:text="${meiShi.msaddress}"></span>
                     </div>
                     <div class="clear f_sep1"></div>
-                    开始时间:  <label  th:text="${#dates.format(meiShi.discountstime,'yyyy年mm月dd HH:mm')}">
-                    </label>
+                    开始时间: <label th:text="${#dates.format(meiShi.discountstime,'yyyy年mm月dd HH:mm')}">
+                </label>
                     <div class="clear"></div>
-                    结束时间:  <label th:text="${#dates.format(meiShi.discountetime,'yyyy年mm月dd HH:mm')}">
-                    </label>
+                    结束时间: <label th:text="${#dates.format(meiShi.discountetime,'yyyy年mm月dd HH:mm')}">
+                </label>
                     <div class="clear"></div>
                     <div class="fl1 ">
                         <br>
@@ -133,7 +154,6 @@
     $(function () {
         $('#bookingForm input, #bookingForm textarea').placeholder();
     });
-
 </script>
 </body>
 </html>
