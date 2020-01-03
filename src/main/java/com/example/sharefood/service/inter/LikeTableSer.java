@@ -12,4 +12,6 @@ public interface LikeTableSer {
     boolean updateLikeTable(LikeTable likeTable);
 
     List<LikeTable> findList();
+
+    List<LikeTable> findCustomerMsList(String username);
 }

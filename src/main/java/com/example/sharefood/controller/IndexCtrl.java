@@ -98,8 +98,8 @@ public class IndexCtrl {
                 if (isStartUsers == null) {
                     model.addAttribute("collect", "no");
                 } else {
-                    LinkedList<Integer> likeList = PersonUtils.getNumberInStr(isStartUsers);
-                    if (likeList.contains(customer.getId())) {
+                    LinkedList<Integer> startList = PersonUtils.getNumberInStr(isStartUsers);
+                    if (startList.contains(customer.getId())) {
                         model.addAttribute("collect", "yes");
                     } else {
                         model.addAttribute("collect", "no");

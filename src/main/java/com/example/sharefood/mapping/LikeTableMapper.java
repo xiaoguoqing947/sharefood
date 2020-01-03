@@ -21,4 +21,6 @@ public interface LikeTableMapper {
     LikeTable selectByMsId(@Param("msId") String msId);
 
     List<LikeTable> findList();
+
+    List<LikeTable> findCustomerMsList(@Param("un") String username);
 }

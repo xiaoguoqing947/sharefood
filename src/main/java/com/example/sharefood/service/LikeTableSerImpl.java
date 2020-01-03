@@ -47,4 +47,9 @@ public class LikeTableSerImpl implements LikeTableSer {
     public List<LikeTable> findList() {
         return likeTableMapper.findList();
     }
+
+    @Override
+    public List<LikeTable> findCustomerMsList(String username) {
+        return likeTableMapper.findCustomerMsList(username);
+    }
 }

@@ -100,4 +100,9 @@
     select *
     from t_like where 1=1
   </select>
+
+  <select id="findCustomerMsList" resultMap="BaseResultMap">
+    SELECT * FROM t_like
+    where msId in ( SELECT id from t_ms where sendUser=#{un} and isfb=1)
+  </select>
 </mapper>

@@ -11,8 +11,11 @@ $(document).ready(function () {
             },
             headers: {'token': token},
             success: function (result) {
+                console.log(result.zan)
                 if (result.success == '1') {
                     $('#leftCartUsername').text(result.customerInfo.username);
+                    $('#zan').text('被点赞数量'+result.zan);
+                    $('#collect').text('被收藏数量'+result.collect);
                     $('#leftCartHeadpic').attr("src", result.customerInfo.headpic);
                     var html = '       <small class="text-muted">邮箱地址</small>\n' +
                         '                <h6>' + ((result.customerInfo.email != null && result.customerInfo.email != "") ? result.customerInfo.email : "baobao@qq.com") + '</h6> <small class="text-muted p-t-30 db">联系电话</small>\n' +
