@@ -1,12 +1,14 @@
 package com.example.sharefood.controller;
 
 import com.example.sharefood.domain.Customer;
+import com.example.sharefood.domain.MeiShi;
 import com.example.sharefood.domain.Tujian;
 import com.example.sharefood.domain.dto.customer.CustomerRegistForm;
 import com.example.sharefood.mapping.CustomerMapper;
 import com.example.sharefood.mapping.TujianMapper;
 import com.example.sharefood.service.inter.AdminSer;
 import com.example.sharefood.service.inter.CustomerSer;
+import com.example.sharefood.service.inter.MeiShiSer;
 import com.example.sharefood.service.inter.TujianSer;
 import com.example.sharefood.util.Token;
 import com.example.sharefood.util.ValidateMethod;
@@ -30,14 +32,15 @@ public class LoginCtrl {
     private AdminSer adminSer;
     private CustomerSer customerSer;
     private TujianSer tujianSer;
+    private MeiShiSer meiShiSer;
 
 
     @Autowired
-    public LoginCtrl(AdminSer adminSer, CustomerSer customerSer,TujianSer tujianSer) {
+    public LoginCtrl(AdminSer adminSer, CustomerSer customerSer,TujianSer tujianSer,MeiShiSer meiShiSer) {
         this.adminSer = adminSer;
         this.customerSer = customerSer;
         this.tujianSer = tujianSer;
-
+        this.meiShiSer = meiShiSer;
     }
 
     /*管理员登录*/
@@ -129,6 +132,24 @@ public class LoginCtrl {
         if (ValidateMethod.isTokenCheck(request)) {
             List<Customer> customers = customerSer.findCustomerList(searchMap);
             resultMap.put("customers", customers);
+            resultMap.put("status", "success");
+        }else{
+            resultMap.put("status", "fail");
+        }
+        return resultMap;
+    }
+
+    /*用户界面加载用户信息发布和草稿的一些美食*/
+    @ResponseBody
+    @PostMapping("/api/admin/mainInfo")
+    public Map<String, Object> mainInfo(HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        Map<String, Object> searchMap = new HashMap<String, Object>();
+        if (ValidateMethod.isTokenCheck(request)) {
+            Customer customer= (Customer) request.getSession().getAttribute("admin");
+            searchMap.put("user", customer.getUsername());
+            List<MeiShi> meiShiList = meiShiSer.listMeiShi(searchMap);
+            resultMap.put("meiShiList", meiShiList);
             resultMap.put("status", "success");
         }else{
             resultMap.put("status", "fail");

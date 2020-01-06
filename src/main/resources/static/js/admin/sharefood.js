@@ -490,6 +490,7 @@ $(document).ready(function () {
             });
         }
     });
+    /*发布按钮*/
     $("#checkMsBtn").click(function () {
         var checkValite = $("#checkForm").validate({
             submitHandler: function (form) {
