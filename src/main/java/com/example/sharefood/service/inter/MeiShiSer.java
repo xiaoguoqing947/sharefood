@@ -19,4 +19,6 @@ public interface MeiShiSer {
     boolean deleteMs(String id);
 
     List<MeiShi> findCurrentMs();
+
+    String findIdByMsId(String msId);
 }

@@ -23,6 +23,8 @@
     <script src="/js/booking.js"></script>
     <script src="/js/toastr.min.js"></script>
     <script src="/js/index/like.js"></script>
+    <script src="/js/jquery.validate.js"></script>
+    <script src="/js/messages_zh.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -92,14 +94,15 @@
                 <div class="clear"></div>
                 <h2>评论信息</h2>
                 <div class="wrapper">
-                    <!--已点赞 <div class="fa fa-thumbs-up"></div>   已收藏 <div class="fa fa-star"></div>-->
                     <div id="zan">
-                        <div class="button _1" th:if="${zan} == null" th:onclick="'addLikeCount('+${meiShi.id}+')'"><span><div
+                        <div class="button _1" th:if="${zan} == null"
+                             th:onclick="'addLikeCount('+${meiShi.id}+')'"><span><div
                                 class="fa fa-thumbs-o-up"></div>
                             赞</span>
                             <div class="back"></div>
                         </div>
-                        <div class="button _1" th:if="${zan} == 'no'" th:onclick="'addLikeCount('+${meiShi.id}+')'"><span><div
+                        <div class="button _1" th:if="${zan} == 'no'"
+                             th:onclick="'addLikeCount('+${meiShi.id}+')'"><span><div
                                 class="fa fa-thumbs-o-up"></div>
                             赞</span>
                             <div class="back"></div>
@@ -111,15 +114,18 @@
                         </div>
                     </div>
                     <div id="collect">
-                        <div class="button _2" th:if="${collect} == null" th:onclick="'addCollectCount('+${meiShi.id}+')'"><span><div
+                        <div class="button _2" th:if="${collect} == null"
+                             th:onclick="'addCollectCount('+${meiShi.id}+')'"><span><div
                                 class="fa fa-star-half-empty"></div>收藏</span>
                             <div class="back"></div>
                         </div>
-                        <div class="button _2" th:if="${collect} == 'no'" th:onclick="'addCollectCount('+${meiShi.id}+')'"><span><div
+                        <div class="button _2" th:if="${collect} == 'no'"
+                             th:onclick="'addCollectCount('+${meiShi.id}+')'"><span><div
                                 class="fa fa-star-half-empty"></div>收藏</span>
                             <div class="back"></div>
                         </div>
-                        <div class="button _2" th:if="${collect} == 'yes'" th:onclick="'deleteCollectCount('+${meiShi.id}+')'"><span><div
+                        <div class="button _2" th:if="${collect} == 'yes'"
+                             th:onclick="'deleteCollectCount('+${meiShi.id}+')'"><span><div
                                 class="fa fa-star"></div>取消收藏</span>
                             <div class="back"></div>
                         </div>
@@ -127,7 +133,43 @@
                 </div>
                 <div class="text1 tx__1"><a href="#"></a></div>
                 <br>
-                <a href="#" class="btn">查看评论信息</a>
+                <!--start-->
+                <div id="pinglunBlok">
+                    <div th:if="${pingLunList} == null">
+                    </div>
+                    <div th:if="${pingLunList} != null">
+                        <div th:each="pingLunList:${pingLunList}">
+                            <div class="card-footer card-comments">
+                                <div class="card-comment">
+                                    <img class="img-circle img-sm" width="30" height="30"
+                                         th:src="${pingLunList.fromavatar}"
+                                         alt="User Image">
+                                    <div class="comment-text">
+                    <span class="username">
+                        <span th:text="${pingLunList.fromname}"></span>
+                      <span class="text-muted float-right"
+                            th:text="${#dates.format(pingLunList.insertdate,'yyyy年mm月dd HH:mm')}"></span>
+                    </span>
+                                        <span th:text="${pingLunList.content}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <form id="addForm" method="post" action="/api/pinglun/add">
+                        <img class="img-fluid img-circle img-sm" width="30" height="30" src="/images/users/3.jpg"
+                             alt="Alt Text">
+                        <div class="img-push">
+                            <input type="hidden" th:value="${meiShi.id}" name="msId" id="msId">
+                            <input type="text" name="context" id="context" style="width: 600px" onblur="validate()"
+                                   class="form-control form-control-sm" placeholder="发表你的评论">
+                            <button type="submit" class="baobao" id="sendBtn">发表 </button>
+                        </div>
+                    </form>
+                </div>
+                <!--end-->
             </div>
             <div class="grid_4">
                 <h2>是否优惠（<font color="#d3d3d3"><span th:text="${meiShi.isdiscount}"></span></font>）</h2>
@@ -164,6 +206,17 @@
 </section>
 <div th:replace="/module/footer :: footer"></div>
 <script>
+    /*TODO  评论为空的判断*/
+    function validate(){
+        var context = $('#context').val();
+        if(context==""){
+            toastr.info("评论内容不为空！");
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     $(function () {
         $('#bookingForm').bookingForm({
             ownerEmail: '#'

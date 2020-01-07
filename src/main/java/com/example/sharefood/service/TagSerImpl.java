@@ -25,4 +25,28 @@ public class TagSerImpl implements TagSer {
     public String findTagById(int parseInt) {
         return tagMapper.findTagNameById(parseInt);
     }
+
+    @Override
+    public boolean addTag(String tagName) {
+        int num = 0;
+        try {
+            Tag tag=new Tag();
+            tag.setTag(tagName);
+            num = tagMapper.insertSelective(tag);
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+        return num > 0;
+    }
+
+    @Override
+    public boolean deleteTag(String id) {
+        int num = 0;
+        try {
+            num = tagMapper.deleteByPrimaryKey(Integer.parseInt(id));
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
+        return num > 0;
+    }
 }

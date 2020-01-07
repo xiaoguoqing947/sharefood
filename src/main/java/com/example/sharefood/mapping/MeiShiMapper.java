@@ -1,6 +1,7 @@
 package com.example.sharefood.mapping;
 
 import com.example.sharefood.domain.MeiShi;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -23,4 +24,6 @@ public interface MeiShiMapper {
     List<MeiShi> findList(Map<String, Object> searchMap);
 
     List<MeiShi> findCurrentMs();
+
+    String findIdByMsId(@Param("msId") String msId);
 }

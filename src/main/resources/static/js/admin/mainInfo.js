@@ -39,7 +39,7 @@ $(document).ready(function () {
                             '                            <img src="' + result.meiShiList[i].mspic + '" alt="book-02" class="w-1/3 sm:w-full shadow-md transition-normal hover:brighter hover:translate-y-1 hover:shadow-lg hover:border-indigo js-book">\n' +
                             '                            <div class="ml-3 sm:ml-0 w-2/3 sm:w-full">\n' +
                             '                                <p class="text-sm my-2 font-medium sm:font-normal">' + result.meiShiList[i].msname + '</p>\n' +
-                            '                                <label  class="hidden sm:inline-block rounded-full libre-bg-yellow text-white px-2 py-1/2 text-xs">' + result.meiShiList[i].insertdate + '</label>\n' +
+                            '                                <label  class="hidden sm:inline-block rounded-full libre-bg-yellow text-white px-2 py-1/2 text-xs">' + result.meiShiList[i].senduser + '</label>\n' +
                             '                            </div>\n' +
                             '                        </div>';
                         if (result.meiShiList[i].isfb == 0) {

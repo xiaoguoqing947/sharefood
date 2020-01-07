@@ -95,6 +95,7 @@ $(document).ready(function () {
                 url: url,
                 type: 'post',
                 dataType: 'JSON',
+                contentType: "application/json; charset=utf-8",
                 beforeSend: function (xhr) {//设置请求头信息
                     xhr.setRequestHeader("token", token);
                 },

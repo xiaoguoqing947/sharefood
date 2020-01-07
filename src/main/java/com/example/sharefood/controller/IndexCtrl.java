@@ -22,14 +22,16 @@ public class IndexCtrl {
     private DicsSer dicsSer;
     private TagSer tagSer;
     private LikeTableSer likeTableSer;
+    private PingLunSer pingLunSer;
 
     @Autowired
-    public IndexCtrl(TujianSer tujianSer, MeiShiSer meiShiSer, DicsSer dicsSer, TagSer tagSer, LikeTableSer likeTableSer) {
+    public IndexCtrl(TujianSer tujianSer, MeiShiSer meiShiSer, DicsSer dicsSer, TagSer tagSer, LikeTableSer likeTableSer,PingLunSer pingLunSer) {
         this.tujianSer = tujianSer;
         this.meiShiSer = meiShiSer;
         this.dicsSer = dicsSer;
         this.tagSer = tagSer;
         this.likeTableSer = likeTableSer;
+        this.pingLunSer = pingLunSer;
     }
 
     @GetMapping("/")
@@ -107,6 +109,9 @@ public class IndexCtrl {
                 }
             }
         }
+        /*根据美食ID查找相关美食的评论信息*/
+        List<PingLun> pingLunList=pingLunSer.findList(id);
+        model.addAttribute("pingLunList", pingLunList);
         /*根据美食ID查找相关美食的详细信息*/
         MeiShi meiShi = meiShiSer.findMsById(id);
         meiShi.setTypes(dicsSer.findDicsNameByValueAndType("type", meiShi.getTypes()));

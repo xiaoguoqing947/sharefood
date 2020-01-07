@@ -67,7 +67,6 @@ $(function () {
             url: '#',
             data: {typex: 5, usrmail: usrmail},
             success: function (data) {//
-                alert(data);
                 $("#login_model").show();
                 $("#forget_model").hide();
                 $("#regist_model").hide();

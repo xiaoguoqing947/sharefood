@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sharefood.mapping.PingLunMapper">
+    <resultMap id="BaseResultMap" type="com.example.sharefood.domain.PingLun">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="msId" jdbcType="INTEGER" property="msid"/>
+        <result column="ownerId" jdbcType="VARCHAR" property="ownerid"/>
+        <result column="fromId" jdbcType="VARCHAR" property="fromid"/>
+        <result column="fromName" jdbcType="VARCHAR" property="fromname"/>
+        <result column="fromAvatar" jdbcType="VARCHAR" property="fromavatar"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="insertDate" jdbcType="TIMESTAMP" property="insertdate"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, msId, ownerId, fromId, fromName, fromAvatar, content, insertDate
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_pinglun
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from t_pinglun
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.example.sharefood.domain.PingLun">
+        insert into t_pinglun (id, msId, ownerId,
+                               fromId, fromName, fromAvatar,
+                               content, insertDate)
+        values (#{id,jdbcType=INTEGER}, #{msid,jdbcType=INTEGER}, #{ownerid,jdbcType=VARCHAR},
+                #{fromid,jdbcType=VARCHAR}, #{fromname,jdbcType=VARCHAR}, #{fromavatar,jdbcType=VARCHAR},
+                #{content,jdbcType=VARCHAR}, #{insertdate,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.example.sharefood.domain.PingLun">
+        insert into t_pinglun
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="msid != null">
+                msId,
+            </if>
+            <if test="ownerid != null">
+                ownerId,
+            </if>
+            <if test="fromid != null">
+                fromId,
+            </if>
+            <if test="fromname != null">
+                fromName,
+            </if>
+            <if test="fromavatar != null">
+                fromAvatar,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="insertdate != null">
+                insertDate,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="msid != null">
+                #{msid,jdbcType=INTEGER},
+            </if>
+            <if test="ownerid != null">
+                #{ownerid,jdbcType=VARCHAR},
+            </if>
+            <if test="fromid != null">
+                #{fromid,jdbcType=VARCHAR},
+            </if>
+            <if test="fromname != null">
+                #{fromname,jdbcType=VARCHAR},
+            </if>
+            <if test="fromavatar != null">
+                #{fromavatar,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="insertdate != null">
+                #{insertdate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.sharefood.domain.PingLun">
+        update t_pinglun
+        <set>
+            <if test="msid != null">
+                msId = #{msid,jdbcType=INTEGER},
+            </if>
+            <if test="ownerid != null">
+                ownerId = #{ownerid,jdbcType=VARCHAR},
+            </if>
+            <if test="fromid != null">
+                fromId = #{fromid,jdbcType=VARCHAR},
+            </if>
+            <if test="fromname != null">
+                fromName = #{fromname,jdbcType=VARCHAR},
+            </if>
+            <if test="fromavatar != null">
+                fromAvatar = #{fromavatar,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="insertdate != null">
+                insertDate = #{insertdate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.sharefood.domain.PingLun">
+        update t_pinglun
+        set msId       = #{msid,jdbcType=INTEGER},
+            ownerId    = #{ownerid,jdbcType=VARCHAR},
+            fromId     = #{fromid,jdbcType=VARCHAR},
+            fromName   = #{fromname,jdbcType=VARCHAR},
+            fromAvatar = #{fromavatar,jdbcType=VARCHAR},
+            content    = #{content,jdbcType=VARCHAR},
+            insertDate = #{insertdate,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="findList" parameterType="int" resultMap="BaseResultMap">
+        select *
+        from t_pinglun
+        where msId = #{id}
+    </select>
+</mapper>

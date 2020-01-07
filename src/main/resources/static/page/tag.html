@@ -1,0 +1,89 @@
+<link href="/css/zui.css" rel="stylesheet">
+<div class="page-breadcrumb">
+    <div class="row align-items-center">
+        <div class="col-5">
+            <h4 class="page-title">标签界面</h4>
+            <div class="d-flex align-items-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">主页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">美食标签类别
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="datagrid">
+                    <div class="search-box">
+                        <button class="btn btn-success " type="button"
+                                data-toggle="modal" data-target="#addModal" id="addBtn"><i class="fa fa-plus"
+                                                                                           aria-hidden="true"></i>添加标签
+                        </button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-danger " type="button" id="deleteBtn"><i class="fa fa-trash"></i>删除标签
+                        </button>
+                    </div>
+                    <div class="datagrid datagrid-striped" id="listDataGrid" data-ride="datagrid"></div>
+                    <div id="listPager" class="pager" data-ride="pager"></div>
+                </div>
+            </div>
+            <div class="col-md-12" style="height: 80px">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加页面 -->
+<div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">添加标签</h4>
+            </div>
+            <form id="addForm">
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="tagName" class="col-sm-3 control-label">标签名:<font
+                                    color="red">*</font></label>
+                            <div class="input-group col-sm-9">
+                                <input class="form-control" id="tagName" name="tagName" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="center-block">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" id="addSaveBtn" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 删除确认 -->
+<div class="modal fade" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+                <h4 class="modal-title">删除标签</h4>
+            </div>
+            <div class="modal-body text-center">
+                <H3>您确定要删除该标签吗?</H3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="deleteTagBtn">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/js/admin/tag.js"></script>

@@ -8,4 +8,8 @@ public interface TagSer {
     List<Tag> findList();
 
     String findTagById(int parseInt);
+
+    boolean addTag(String tagName);
+
+    boolean deleteTag(String id);
 }

@@ -69,4 +69,9 @@ public class MeiShiSerImpl implements MeiShiSer {
     public List<MeiShi> findCurrentMs() {
         return meiShiMapper.findCurrentMs();
     }
+
+    @Override
+    public String findIdByMsId(String msId) {
+        return meiShiMapper.findIdByMsId(msId);
+    }
 }
