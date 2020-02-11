@@ -8,9 +8,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author 76905
- */
+
 public class DateUtils {
 
     public static String  getDateStr(Date date){

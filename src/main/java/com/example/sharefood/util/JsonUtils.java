@@ -9,16 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 public class JsonUtils {
-    /**
-     * 一个String字符串转换为json格式
-     *
-     * @param s
-     * @return
-     * @descript
-     * @author Jacky
-     * @date 2015年6月15日
-     * @version 1.0v
-     */
     public static String stringToJson(String s) {
         if (s == null) {
             return nullToJson();
