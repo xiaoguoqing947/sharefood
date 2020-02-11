@@ -130,7 +130,7 @@
             <div class="grid_4 preffix_1">
                 <h2>美食标签</h2>
                 <ul class="list" th:each="tagList : ${tagList}">
-                    <li><a th:href="'/food?tag='+${tagList.id}" th:text="${tagList.tag}"></a></li>
+                    <li><a th:href="'/food?tag='+${tagList.id}+'&isAdmin='+(${session.admin} == null ? 'unlogin' : 'user')" th:text="${tagList.tag}"></a></li>
                 </ul>
                 <h2>相关美食</h2>
                 <div th:each="msList ,iterStat  : ${meiShiList}">

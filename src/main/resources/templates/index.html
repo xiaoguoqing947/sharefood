@@ -94,7 +94,7 @@
                         <div class="count"><span th:text="${tjList.id}"></span></div>
                         <span th:text="${tjList.tjdesc}"></span>
                         <br>
-                        <a th:href="'/food?type='+(${tjList.id}-1)" class="btn">更多</a>
+                        <a th:href="'/food?type='+(${tjList.id}-1)+'&isAdmin='+(${session.admin} == null ? 'unlogin' : 'user')" class="btn">更多</a>
                     </div>
                 </div>
             </div>
